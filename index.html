@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Minecraft Server - Official Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Minecraft-style font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: "Press Start 2P", monospace; margin: 0; background-color: #cfe3dc; }
+        header { background-color: #2e7d32; color: white; padding: 10px 20px; text-align: center; }
+        nav { background: #1b5e20; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        section { padding: 20px; background: white; margin: 10px auto; border-radius: 8px; max-width: 1000px; }
+        .staff-card {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            background: #fafafa;
+            text-align: center;
+        }
+        .staff-card img { width: 100%; border-radius: 5px; }
+        footer { background: #333; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+        .online-status { padding: 5px 10px; border-radius: 4px; color: white; display: inline-block; }
+        .online { background: green; }
+        .offline { background: red; }
+        h2 { color: #2e7d32; }
+        button { font-family: "Press Start 2P", monospace; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌍 My Minecraft Server</h1>
+    <p>Welcome to our official website!</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#status">Server Status</a>
+    <a href="#staff">Staff</a>
+    <a href="#ip">IP Address</a>
+    <a href="#ranking">Ranking</a>
+    <a href="#patchnotes">Patch Notes</a>
+    <a href="#discord">Discord</a>
+    <a href="#rules">Rules</a>
+</nav>
+
+<section id="home">
+    <h2>Home</h2>
+    <p>Welcome adventurers! Explore our world, join events, and become part of our community.</p>
+</section>
+
+<section id="status">
+    <h2>Server Status</h2>
+    <p>Current Status: <span id="serverStatus" class="online-status online">Online</span></p>
+</section>
+
+<section id="staff">
+    <h2>Staff</h2>
+    <div class="staff-card">
+        <img src="https://mc-heads.net/body/Notch/200" alt="Notch's Skin">
+        <h4>Notch</h4>
+        <p>Server Administrator</p>
+    </div>
+    <div class="staff-card">
+        <img src="https://mc-heads.net/body/Dream/200" alt="Dream's Skin">
+        <h4>Dream</h4>
+        <p>Moderator</p>
+    </div>
+</section>
+
+<section id="ip">
+    <h2>IP Address</h2>
+    <p>play.example.com <button onclick="copyIP()">Copy</button></p>
+</section>
+
+<section id="ranking">
+    <h2>Ranking</h2>
+    <p>Check out the top players and vote leaders here.</p>
+</section>
+
+<section id="patchnotes">
+    <h2>Patch Notes</h2>
+    <ul>
+        <li>v1.0.1 - Added new world map.</li>
+        <li>v1.0.0 - Server launch.</li>
+    </ul>
+</section>
+
+<section id="discord">
+    <h2>Discord</h2>
+    <p><a href="https://discord.gg/XXXXX" target="_blank">Join our Discord Server</a></p>
+</section>
+
+<section id="rules">
+    <h2>Rules</h2>
+    <ol>
+        <li>Respect other players.</li>
+        <li>No cheating or exploiting.</li>
+        <li>Follow staff instructions.</li>
+    </ol>
+</section>
+
+<footer>
+    <p>© 2024 My Minecraft Server</p>
+</footer>
+
+<script>
+    function copyIP() {
+        navigator.clipboard.writeText("play.example.com");
+        alert("IP copied to clipboard!");
+    }
+</script>
+
+</body>
+</html>
