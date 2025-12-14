@@ -1,123 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Minecraft Server - Official Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Minecraft-style font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: "Press Start 2P", monospace; margin: 0; background-color: #cfe3dc; }
-        header { background-color: #2e7d32; color: white; padding: 10px 20px; text-align: center; }
-        nav { background: #1b5e20; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        nav a:hover { text-decoration: underline; }
-        section { padding: 20px; background: white; margin: 10px auto; border-radius: 8px; max-width: 1000px; }
-        .staff-card {
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            width: 200px;
-            background: #fafafa;
-            text-align: center;
-        }
-        .staff-card img { width: 100%; border-radius: 5px; }
-        footer { background: #333; color: white; text-align: center; padding: 10px; margin-top: 20px; }
-        .online-status { padding: 5px 10px; border-radius: 4px; color: white; display: inline-block; }
-        .online { background: green; }
-        .offline { background: red; }
-        h2 { color: #2e7d32; }
-        button { font-family: "Press Start 2P", monospace; padding: 5px 10px; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Minecraft Server</title>
+
+  <!-- Minecraft-like font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --nav-height:60px;
+      --accent:#f2a041; /* CTA color */
+      --dark:#2b211d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Montserrat", "Press Start 2P", system-ui, Arial, sans-serif;
+      color:#fff;
+    }
+
+    /* NAV */
+    .nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:var(--nav-height);
+      background:rgba(27,21,19,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 24px;
+      z-index:30;
+      gap:12px;
+    }
+    .nav .left{display:flex;align-items:center;gap:16px}
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      color:#fff;
+    }
+    .logo img{height:36px; width:auto}
+    .menu{display:flex;gap:18px; align-items:center}
+    .menu a{color:rgba(255,255,255,0.85); text-decoration:none; font-size:13px; letter-spacing:0.6px}
+    .menu a:hover{opacity:0.9}
+
+    .cta{
+      background:var(--accent);
+      color:#fff;
+      padding:10px 18px;
+      border-radius:4px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow:0 4px 0 rgba(0,0,0,0.15);
+    }
+    .cta:hover{filter:brightness(0.98); transform:translateY(-1px)}
+
+    /* HERO */
+    .hero-wrap{
+      /* full-viewport minus nav */
+      min-height:calc(100vh - var(--nav-height));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      margin-top:var(--nav-height);
+      overflow:hidden;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background-image: url('https://static.evalsone.com/uploads/80750ca1-bc97-4d9e-a623-8ac471343b67.png'); /* change to your image */
+      background-size:cover;
+      background-position:center;
+      filter: blur(6px) brightness(0.45);
+      transform:scale(1.03);
+      z-index:1;
+    }
+    /* dark overlay to make text readable */
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(16,12,10,0.2), rgba(16,12,10,0.5));
+      z-index:2;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:3;
+      text-align:center;
+      padding:40px 20px;
+      max-width:1100px;
+      width:100%;
+    }
+    .hero-sub{
+      color:rgba(255,255,255,0.85);
+      font-weight:600;
+      margin-bottom:12px;
+      font-size:14px;
+    }
+    .hero-title{
+      font-size:64px;
+      line-height:1.02;
+      margin:0;
+      font-weight:800;
+      color: #fff;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .hero-highlight{
+      color:var(--accent);
+      display:block;
+      font-size:72px;
+      margin-top:6px;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+    .hero-cta{
+      margin-top:28px;
+      display:inline-flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-cta .btn{
+      background:var(--accent);
+      color:#fff;
+      padding:14px 28px;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow:0 6px 0 rgba(0,0,0,0.18);
+      transition:transform .12s ease, filter .12s ease;
+    }
+    .hero-cta .btn:hover{transform:translateY(-3px)}
+    .hero-cta .btn.secondary{
+      background:transparent;
+      border:2px solid rgba(255,255,255,0.12);
+      color:rgba(255,255,255,0.95);
+      font-weight:600;
+      padding:10px 18px;
+      box-shadow:none;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero-title{font-size:34px}
+      .hero-highlight{font-size:34px}
+      .menu{display:none}
+      .logo img{height:28px}
+      .nav{padding:0 12px}
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>🌍 My Minecraft Server</h1>
-    <p>Welcome to our official website!</p>
-</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#status">Server Status</a>
-    <a href="#staff">Staff</a>
-    <a href="#ip">IP Address</a>
-    <a href="#ranking">Ranking</a>
-    <a href="#patchnotes">Patch Notes</a>
-    <a href="#discord">Discord</a>
-    <a href="#rules">Rules</a>
-</nav>
-
-<section id="home">
-    <h2>Home</h2>
-    <p>Welcome adventurers! Explore our world, join events, and become part of our community.</p>
-</section>
-
-<section id="status">
-    <h2>Server Status</h2>
-    <p>Current Status: <span id="serverStatus" class="online-status online">Online</span></p>
-</section>
-
-<section id="staff">
-    <h2>Staff</h2>
-    <div class="staff-card">
-        <img src="https://mc-heads.net/body/Notch/200" alt="Notch's Skin">
-        <h4>Notch</h4>
-        <p>Server Administrator</p>
+  <!-- NAV -->
+  <header class="nav" role="navigation">
+    <div class="left">
+      <a class="logo" href="#home">
+        <!-- replace src with your logo or text -->
+        <img src="https://via.placeholder.com/140x36?text=Logo" alt="logo">
+        <span style="font-weight:700; font-size:14px;">My Server</span>
+      </a>
+      <nav class="menu" aria-label="Main">
+        <a href="#home">HOME</a>
+        <a href="#news">NEWS</a>
+        <a href="#rules">RULES</a>
+        <a href="#store">STORE</a>
+      </nav>
     </div>
-    <div class="staff-card">
-        <img src="https://mc-heads.net/body/Dream/200" alt="Dream's Skin">
-        <h4>Dream</h4>
-        <p>Moderator</p>
+
+    <!-- CTA button on right -->
+    <div>
+      <!-- clicking this goes to external site; change href -->
+      <a class="cta" href="https://example.com" target="_blank" rel="noopener">HOPLITE.GG</a>
     </div>
-</section>
+  </header>
 
-<section id="ip">
-    <h2>IP Address</h2>
-    <p>play.example.com <button onclick="copyIP()">Copy</button></p>
-</section>
+  <!-- HERO -->
+  <main>
+    <section class="hero-wrap" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
 
-<section id="ranking">
-    <h2>Ranking</h2>
-    <p>Check out the top players and vote leaders here.</p>
-</section>
+      <div class="hero-content">
+        <div class="hero-sub">1.21.8+ | Bedrock Compatible</div>
+        <h1 class="hero-title">A brand new<span class="hero-highlight">PvP experience</span></h1>
 
-<section id="patchnotes">
-    <h2>Patch Notes</h2>
-    <ul>
-        <li>v1.0.1 - Added new world map.</li>
-        <li>v1.0.0 - Server launch.</li>
-    </ul>
-</section>
+        <div class="hero-cta">
+          <!-- Primary CTA: opens external join page -->
+          <a class="btn" href="https://discord.gg/XXXXX" target="_blank" rel="noopener">Join Now</a>
 
-<section id="discord">
-    <h2>Discord</h2>
-    <p><a href="https://discord.gg/XXXXX" target="_blank">Join our Discord Server</a></p>
-</section>
+          <!-- Secondary CTA, optional -->
+          <a class="btn secondary" href="#news">Learn More</a>
+        </div>
+      </div>
+    </section>
 
-<section id="rules">
-    <h2>Rules</h2>
-    <ol>
-        <li>Respect other players.</li>
-        <li>No cheating or exploiting.</li>
-        <li>Follow staff instructions.</li>
-    </ol>
-</section>
+    <!-- 以下に通常のサイトコンテンツ（status, staff, ip, etc.）を置けます -->
+    <section id="status" style="padding:36px; background:#111; color:#eee; text-align:center;">
+      <h2 style="margin:0 0 12px;">Server Status</h2>
+      <p>Current Status: <strong style="color:#7fdb6a">Online</strong></p>
+    </section>
 
-<footer>
-    <p>© 2024 My Minecraft Server</p>
-</footer>
+    <!-- example staff section -->
+    <section id="staff" style="padding:36px; background:#fafafa; color:#222; text-align:center;">
+      <h2 style="color:#2b211d;">Staff</h2>
+      <div style="display:flex;gap:18px;justify-content:center;margin-top:18px;flex-wrap:wrap">
+        <div style="width:160px;background:#fff;padding:12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+          <img src="https://mc-heads.net/body/Notch/180" alt="Notch" style="width:100%;border-radius:6px">
+          <div style="margin-top:8px;font-weight:700">Notch</div>
+          <div style="font-size:13px;color:#666">Administrator</div>
+        </div>
+        <div style="width:160px;background:#fff;padding:12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+          <img src="https://mc-heads.net/body/Dream/180" alt="Dream" style="width:100%;border-radius:6px">
+          <div style="margin-top:8px;font-weight:700">Dream</div>
+          <div style="font-size:13px;color:#666">Moderator</div>
+        </div>
+      </div>
+    </section>
 
-<script>
-    function copyIP() {
-        navigator.clipboard.writeText("play.example.com");
-        alert("IP copied to clipboard!");
-    }
-</script>
+  </main>
 
 </body>
 </html>
