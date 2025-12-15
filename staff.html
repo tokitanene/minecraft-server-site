@@ -2,26 +2,149 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Staff - Jeous</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Jeous | Staff</title>
+
+  <style>
+    @font-face {
+      font-family: 'Minecraft';
+      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Minecraft', sans-serif;
+      color: white;
+      background: #0c0f14;
+    }
+
+    header {
+      padding: 24px 40px;
+    }
+
+    header a {
+      color: #eaffff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 42px;
+    }
+
+    .group {
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+
+    .group-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      border-left: 4px solid #6cf;
+      padding-left: 12px;
+    }
+
+    .members {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px;
+    }
+
+    .member {
+      background: #151a23;
+      border: 1px solid #2a3245;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    /* 名前（上） */
+    .name {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #eaffff;
+    }
+
+    /* スキン画像 */
+    .member img {
+      width: 64px;
+      height: 64px;
+      image-rendering: pixelated;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <a href="index.html">Home</a>
-</header>
+  <header>
+    <a href="index.html">← Back to Home</a>
+  </header>
 
-<div class="staff-grid">
-  <div class="staff online">
-    <img src="https://mc-heads.net/avatar/tokita_nene/64">
-    <div>tokita_nene</div>
-  </div>
+  <h1>Staff</h1>
 
-  <div class="staff">
-    <img src="https://mc-heads.net/avatar/sample_staff/64">
-    <div>sample_staff</div>
-  </div>
+  <!-- Leader -->
+  <div class="group">
+    <div class="group-title">Leader</div>
+    <div class="members">
+
+      <div class="member">
+        <div class="name">tokita_nene</div>
+        <img src="https://mc-heads.net/avatar/tokita_nene/64">
+      </div>
+
+      <div class="member">
+  <div class="name">_k2t_</div>
+  <img src="https://mc-heads.net/avatar/_k2t_/64">
 </div>
+
+
+    </div>
+  </div>
+
+  <!-- Admin -->
+  <div class="group">
+    <div class="group-title">Admin</div>
+    <div class="members">
+
+      <div class="member">
+        <div class="name">D_daidaidai7</div>
+        <img src="https://mc-heads.net/avatar/D_daidaidai7/64">
+      </div>
+
+      <div class="member">
+  <div class="name">HoneyPie_ti</div>
+  <img src="https://mc-heads.net/avatar/HoneyPie_ti/64">
+</div>
+
+            <div class="member">
+  <div class="name">mikofi</div>
+  <img src="https://mc-heads.net/avatar/mikofi/64">
+</div>
+
+                <div class="member">
+  <div class="name">so4_jk</div>
+  <img src="https://mc-heads.net/avatar/so4_jk/64">
+</div>
+                      <div class="member">
+  <div class="name">Nanaiiden0</div>
+  <img src="https://mc-heads.net/avatar/Nanaiiden0/64">
+</div>
+
+    </div>
+  </div>
+
+  <!-- Moderator -->
+  <div class="group">
+    <div class="group-title">MOD</div>
+    <div class="members">
+
+      <div class="member">
+        <div class="name">123aaaddd</div>
+        <img src="https://mc-heads.net/avatar/123aaaddd/64">
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
