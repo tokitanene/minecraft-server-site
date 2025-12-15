@@ -4,27 +4,37 @@
   <meta charset="UTF-8" />
   <title>Jeous Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    * { box-sizing: border-box; }
+  <style>
+    /* ===== Minecraft Font ===== */
+    @font-face {
+      font-family: 'Minecraft';
+      src: url('fonts/Minecraft-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       height: 100vh;
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Minecraft', monospace;
       color: #ffffff;
       background: linear-gradient(180deg, #1e4d57, #0b2e36);
       overflow: hidden;
     }
 
-    /* 霧っぽい背景 */
+    /* 霧エフェクト（背景は後で差し替え可） */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 40%, rgba(200,255,255,0.25), transparent 40%),
-                  radial-gradient(circle at 70% 60%, rgba(200,255,255,0.25), transparent 45%);
+      background:
+        radial-gradient(circle at 30% 40%, rgba(200,255,255,0.25), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(200,255,255,0.25), transparent 45%);
       animation: fog 20s infinite alternate ease-in-out;
       z-index: 0;
     }
@@ -34,6 +44,7 @@
       to   { transform: translateY(20px); }
     }
 
+    /* ===== Header ===== */
     header {
       position: absolute;
       top: 20px;
@@ -41,7 +52,6 @@
       display: flex;
       gap: 24px;
       font-size: 12px;
-      opacity: 0.9;
       z-index: 1;
     }
 
@@ -50,6 +60,11 @@
       text-decoration: none;
     }
 
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Main ===== */
     main {
       position: relative;
       z-index: 1;
@@ -62,16 +77,15 @@
     }
 
     h1 {
-      font-size: clamp(32px, 6vw, 64px);
+      font-size: clamp(36px, 6vw, 72px);
       letter-spacing: 4px;
-      -webkit-text-stroke: 2px #ffffff;
-      color: transparent;
       margin: 0;
     }
 
     h2 {
-      font-size: 28px;
+      font-size: 20px;
       margin: 24px 0 40px;
+      opacity: 0.9;
     }
 
     .buttons {
@@ -80,20 +94,22 @@
     }
 
     .btn {
-      padding: 14px 24px;
+      padding: 14px 26px;
       border: 2px solid #bfefff;
       background: rgba(255,255,255,0.05);
       color: #ffffff;
-      text-decoration: none;
+      font-family: 'Minecraft', monospace;
       font-size: 12px;
-      transition: all 0.2s ease;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
 
     .btn:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.25);
       transform: translateY(-2px);
     }
 
+    /* ===== Footer ===== */
     footer {
       position: absolute;
       bottom: 16px;
@@ -104,31 +120,38 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header -->
   <header>
-    <a href="#">Updates</a>
-    <a href="#">Stats</a>
-    <a href="#">Events</a>
+    <a href="patch.html">Patch Notes</a>
+    <a href="staff.html">Staff</a>
+    <a href="games.html">Games</a>
+    <a href="schedule.html">Schedule</a>
   </header>
 
+  <!-- Main -->
   <main>
-    <h1>FUNNIEWARS</h1>
-    <h2>1.2</h2>
+    <h1>JEOUS</h1>
+    <h2>1.21.8~</h2>
+
     <div class="buttons">
       <button class="btn" onclick="copyIP()">Join Now</button>
       <button class="btn" onclick="openDiscord()">Join Discord</button>
     </div>
   </main>
 
+  <!-- Footer -->
   <footer>
-    A project by Tokita_Nene
+    A project by tokita_nene
   </footer>
 
+  <!-- Scripts -->
   <script>
     function copyIP() {
       navigator.clipboard.writeText('mc.jeous.net').then(() => {
-        alert('Server IP copied: mc.jeous.net');
+        alert('サーバーIPをコピーしました: mc.jeous.net');
       });
     }
 
