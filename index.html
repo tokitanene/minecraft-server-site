@@ -1,39 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Jeous</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Minecraft Regular font -->
+  <style>
+    @font-face {
+      font-family: 'Minecraft';
+      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Minecraft', sans-serif;
+      height: 100vh;
+      color: white;
+      background: url('./images/background.gif') center/cover no-repeat;
+    }
+
+    header {
+      position: absolute;
+      top: 24px;
+      left: 40px;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    header a {
+      color: #dff;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    header a:hover {
+      opacity: 1;
+    }
+
+    .center {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .icon {
+      width: 96px;
+      height: 96px;
+      image-rendering: pixelated;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 64px;
+      letter-spacing: 4px;
+      color: transparent;
+      -webkit-text-stroke: 2px white;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin: 20px 0 40px;
+      color: white;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: 2px solid #cfe;
+      background: transparent;
+      color: #eaffff;
+      cursor: pointer;
+      font-family: 'Minecraft', sans-serif;
+    }
+
+    .btn:hover {
+      background: rgba(200,255,255,0.15);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <a href="patch-notes.html">Patch Notes</a>
-  <a href="staff.html">Staff</a>
-  <a href="games.html">Games</a>
-  <a href="schedule.html">Schedule</a>
-</header>
+  <header>
+    <a href="patch-notes.html">Patch Notes</a>
+    <a href="staff.html">Staff</a>
+    <a href="games.html">Games</a>
+    <a href="schedule.html">Schedule</a>
+  </header>
 
-<div class="center">
-  <h1>JEOUS</h1>
-  <h2>1.21.8~</h2>
+  <div class="center">
+    <img src="./images/server-icon.png" class="icon" alt="server icon" />
+    <h1>JEOUS</h1>
+    <h2>1.21.8~</h2>
 
-  <button onclick="copyIP()">Join Now</button>
-  <button onclick="window.open('https://discord.gg/NbvhrRzpNc')">
-    Join Discord
-  </button>
-</div>
+    <div class="buttons">
+      <button class="btn" onclick="copyIP()">Join Now</button>
+      <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">Join Discord</button>
+    </div>
+  </div>
 
-<footer>
-  A project by tokita_nene
-</footer>
+  <footer>A project by tokita_nene</footer>
 
-<script>
-function copyIP() {
-  navigator.clipboard.writeText("mc.jeous.net");
-  alert("IP copied!");
-}
-</script>
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText('mc.jeous.net');
+      alert('coppied mc.jeous.net');
+    }
+  </script>
 
 </body>
 </html>
