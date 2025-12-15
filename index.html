@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Jeous</title>
+  <title>Jeous Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -116,14 +116,26 @@
     <h1>FUNNIEWARS</h1>
     <h2>1.2</h2>
     <div class="buttons">
-      <a class="btn" href="#">Join Now</a>
-      <a class="btn" href="#">Join Discord</a>
+      <button class="btn" onclick="copyIP()">Join Now</button>
+      <button class="btn" onclick="openDiscord()">Join Discord</button>
     </div>
   </main>
 
   <footer>
-    A project by ConsoleX
+    A project by Tokita_Nene
   </footer>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText('mc.jeous.net').then(() => {
+        alert('Server IP copied: mc.jeous.net');
+      });
+    }
+
+    function openDiscord() {
+      window.open('https://discord.gg/NbvhrRzpNc', '_blank');
+    }
+  </script>
 
 </body>
 </html>
