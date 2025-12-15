@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Jeous</title>
 
-  <!-- Minecraft Regular font -->
+  <!-- Minecraft Regular Font -->
   <style>
     @font-face {
       font-family: 'Minecraft';
@@ -24,44 +24,44 @@
       background: url('./images/background.gif') center / cover no-repeat;
     }
 
-    /* ===== Header ===== */
+    /* ===== ヘッダー ===== */
     header {
       position: absolute;
       top: 24px;
       left: 40px;
       display: flex;
-      gap: 36px;          /* 間隔を広げた */
-      font-size: 18px;   /* ← ここで大きくしてる */
+      gap: 36px;
+      font-size: 18px;
       z-index: 10;
     }
 
     header a {
       color: #eaffff;
       text-decoration: none;
-      opacity: 0.85;
-      transition: 0.2s;
+      opacity: 0.9;
     }
 
     header a:hover {
       opacity: 1;
-      text-shadow: 0 0 8px rgba(180, 255, 255, 0.8);
+      text-shadow: 0 0 6px rgba(200,255,255,0.8);
     }
 
-    /* ===== Center ===== */
+    /* ===== 中央エリア ===== */
     .center {
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      backdrop-filter: blur(3px);
+      pointer-events: none;
     }
 
-    /* 中央だけぼかすパネル */
     .panel {
-      padding: 48px 64px;
-      backdrop-filter: blur(4px);
-      background: rgba(0, 0, 0, 0.15);
-      border-radius: 12px;
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .icon {
@@ -74,50 +74,53 @@
     h1 {
       font-size: 64px;
       letter-spacing: 4px;
+      margin-bottom: 10px;
       color: transparent;
       -webkit-text-stroke: 2px white;
     }
 
     h2 {
-      font-size: 18px;
-      margin: 20px 0 40px;
-      color: white;
+      font-size: 20px;
+      margin-bottom: 40px;
+      color: #ffffff;
     }
 
+    /* ===== ボタン ===== */
     .buttons {
       display: flex;
-      gap: 16px;
-      justify-content: center;
+      gap: 20px;
     }
 
     .btn {
-      padding: 12px 20px;
+      padding: 14px 24px;
       border: 2px solid #cfe;
       background: transparent;
       color: #eaffff;
       cursor: pointer;
       font-family: 'Minecraft', sans-serif;
-      transition: 0.2s;
+      font-size: 14px;
     }
 
     .btn:hover {
-      background: rgba(200, 255, 255, 0.15);
+      background: rgba(200,255,255,0.2);
+      box-shadow: 0 0 10px rgba(200,255,255,0.6);
     }
 
-    /* ===== Footer ===== */
+    /* ===== フッター ===== */
     footer {
       position: absolute;
       bottom: 16px;
       left: 20px;
       font-size: 12px;
       opacity: 0.8;
+      z-index: 10;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
+  <!-- ナビゲーション -->
   <header>
     <a href="patch-notes.html">Patch Notes</a>
     <a href="staff.html">Staff</a>
@@ -125,10 +128,12 @@
     <a href="schedule.html">Schedule</a>
   </header>
 
-  <!-- Center -->
+  <!-- 中央表示 -->
   <div class="center">
     <div class="panel">
-      <img src="./images/server-icon.png" class="icon" alt="server icon" />
+
+      <img src="./images/server-icon.png" class="icon" alt="server icon">
+
       <h1>JEOUS</h1>
       <h2>1.21.8~</h2>
 
@@ -138,13 +143,13 @@
           Join Discord
         </button>
       </div>
+
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- フッター -->
   <footer>A project by tokita_nene</footer>
 
-  <!-- Script -->
   <script>
     function copyIP() {
       navigator.clipboard.writeText('mc.jeous.net');
