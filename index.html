@@ -1,164 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jeous Server</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    /* ===== Minecraft Font ===== */
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('fonts/Minecraft-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: 'Minecraft', monospace;
-      color: #ffffff;
-      background: linear-gradient(180deg, #1e4d57, #0b2e36);
-      overflow: hidden;
-    }
-
-    /* 霧エフェクト（背景は後で差し替え可） */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 30% 40%, rgba(200,255,255,0.25), transparent 40%),
-        radial-gradient(circle at 70% 60%, rgba(200,255,255,0.25), transparent 45%);
-      animation: fog 20s infinite alternate ease-in-out;
-      z-index: 0;
-    }
-
-    @keyframes fog {
-      from { transform: translateY(-20px); }
-      to   { transform: translateY(20px); }
-    }
-
-    /* ===== Header ===== */
-    header {
-      position: absolute;
-      top: 20px;
-      left: 24px;
-      display: flex;
-      gap: 24px;
-      font-size: 12px;
-      z-index: 1;
-    }
-
-    header a {
-      color: #cfefff;
-      text-decoration: none;
-    }
-
-    header a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== Main ===== */
-    main {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: clamp(36px, 6vw, 72px);
-      letter-spacing: 4px;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 20px;
-      margin: 24px 0 40px;
-      opacity: 0.9;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 20px;
-    }
-
-    .btn {
-      padding: 14px 26px;
-      border: 2px solid #bfefff;
-      background: rgba(255,255,255,0.05);
-      color: #ffffff;
-      font-family: 'Minecraft', monospace;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .btn:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateY(-2px);
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      position: absolute;
-      bottom: 16px;
-      left: 20px;
-      font-size: 10px;
-      opacity: 0.6;
-      z-index: 1;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Jeous</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- Header -->
-  <header>
-    <a href="patch.html">Patch Notes</a>
-    <a href="staff.html">Staff</a>
-    <a href="games.html">Games</a>
-    <a href="schedule.html">Schedule</a>
-  </header>
+<header>
+  <a href="patch-notes.html">Patch Notes</a>
+  <a href="staff.html">Staff</a>
+  <a href="games.html">Games</a>
+  <a href="schedule.html">Schedule</a>
+</header>
 
-  <!-- Main -->
-  <main>
-    <h1>JEOUS</h1>
-    <h2>1.21.8~</h2>
+<div class="center">
+  <h1>JEOUS</h1>
+  <h2>1.21.8~</h2>
 
-    <div class="buttons">
-      <button class="btn" onclick="copyIP()">Join Now</button>
-      <button class="btn" onclick="openDiscord()">Join Discord</button>
-    </div>
-  </main>
+  <button onclick="copyIP()">Join Now</button>
+  <button onclick="window.open('https://discord.gg/NbvhrRzpNc')">
+    Join Discord
+  </button>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    A project by tokita_nene
-  </footer>
+<footer>
+  A project by tokita_nene
+</footer>
 
-  <!-- Scripts -->
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText('mc.jeous.net').then(() => {
-        alert('サーバーIPをコピーしました: mc.jeous.net');
-      });
-    }
-
-    function openDiscord() {
-      window.open('https://discord.gg/NbvhrRzpNc', '_blank');
-    }
-  </script>
+<script>
+function copyIP() {
+  navigator.clipboard.writeText("mc.jeous.net");
+  alert("IP copied!");
+}
+</script>
 
 </body>
 </html>
