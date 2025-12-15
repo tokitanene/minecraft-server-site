@@ -1,1 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jeous | Staff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* ===== Minecraft Font ===== */
+    @font-face {
+      font-family: 'Minecraft';
+      src: url('fonts/Minecraft-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Minecraft', monospace;
+      color: #ffffff;
+      background: linear-gradient(180deg, #1e4d57, #0b2e36);
+      text-align: center;
+    }
+
+    header {
+      padding: 24px;
+      font-size: 12px;
+    }
+
+    header a {
+      color: #cfefff;
+      text-decoration: none;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    .staff-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 60px 20px;
+    }
+
+    .staff-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid #bfefff;
+      padding: 20px 24px;
+      width: 180px;
+    }
+
+    .staff-card img {
+      width: 96px;
+      height: 96px;
+      image-rendering: pixelated;
+      margin-bottom: 16px;
+    }
+
+    .staff-name {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .staff-role {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    footer {
+      margin-bottom: 30px;
+      font-size: 10px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html">← Back to Home</a>
+  </header>
+
+  <!-- Title -->
+  <h1>STAFF</h1>
+
+  <!-- Staff Grid -->
+  <div class="staff-grid">
+
+    <!-- Staff 1 -->
+    <div class="staff-card">
+      <img src="https://mc-heads.net/avatar/tokita_nene/96" alt="tokita_nene">
+      <div class="staff-name">tokita_nene</div>
+      <div class="staff-role">Leader</div>
+    </div>
+
+    <!-- Staff 2 -->
+    <div class="staff-card">
+      <img src="https://mc-heads.net/avatar/_k2t_/96" alt="_k2t_">
+      <div class="staff-name">_k2t_</div>
+      <div class="staff-role">Leader</div>
+    </div>
+
+    <!-- Staff 追加はここから下にコピペ -->
+    <!--
+    <div class="staff-card">
+      <img src="https://mc-heads.net/avatar/D_daidaidai7/96">
+      <div class="staff-name">D_daidaidai7</div>
+      <div class="staff-role">Admin</div>
+    </div>
+    -->
+
+  </div>
+
+  <footer>
+    Jeous Server Staff Team
+  </footer>
+
+</body>
+</html>
 
