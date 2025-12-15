@@ -20,27 +20,21 @@
       font-family: 'Minecraft', sans-serif;
       min-height: 100vh;
       color: white;
-      background: url('./images/background.gif') center / cover no-repeat fixed;
+      background: #0b1220; /* staffと同じ紺色 */
     }
 
-    /* ===== Header ===== */
-    header {
+    /* ===== Back Button ===== */
+    .back {
       position: fixed;
       top: 24px;
       left: 40px;
-      display: flex;
-      gap: 32px;
       font-size: 18px;
-      z-index: 10;
-    }
-
-    header a {
       color: #dff;
       text-decoration: none;
       opacity: 0.9;
     }
 
-    header a:hover {
+    .back:hover {
       opacity: 1;
     }
 
@@ -75,20 +69,15 @@
 
 <body>
 
-<header>
-  <a href="index.html">Home</a>
-  <a href="patch-notes.html">Patch Notes</a>
-  <a href="staff.html">Staff</a>
-  <a href="games.html">Games</a>
-  <a href="schedule.html">Schedule</a>
-</header>
+<!-- ← Back to Home -->
+<a class="back" href="index.html">← Back to Home</a>
 
 <main>
   <h1>Patch Notes</h1>
 
   <div class="empty">
-    現在、公開されているパッチノートはありません。<br>
-    最新情報は Discord をご確認ください。
+    There are currently no publicly available patch notes.<br>
+    For the latest updates, please check our official Discord server.
   </div>
 </main>
 
