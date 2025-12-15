@@ -21,9 +21,10 @@
       font-family: 'Minecraft', sans-serif;
       height: 100vh;
       color: white;
-      background: url('./images/background.gif') center/cover no-repeat;
+      background: url('./images/background.gif') center / cover no-repeat;
     }
 
+    /* ===== Header ===== */
     header {
       position: absolute;
       top: 24px;
@@ -31,6 +32,7 @@
       display: flex;
       gap: 28px;
       font-size: 14px;
+      z-index: 10;
     }
 
     header a {
@@ -43,14 +45,21 @@
       opacity: 1;
     }
 
+    /* ===== Center ===== */
     .center {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      backdrop-filter: blur(2px);
+    }
+
+    /* ぼかしはこのパネルだけ */
+    .panel {
+      padding: 48px 64px;
+      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
     }
 
     .icon {
@@ -76,6 +85,7 @@
     .buttons {
       display: flex;
       gap: 16px;
+      justify-content: center;
     }
 
     .btn {
@@ -88,9 +98,10 @@
     }
 
     .btn:hover {
-      background: rgba(200,255,255,0.15);
+      background: rgba(200, 255, 255, 0.15);
     }
 
+    /* ===== Footer ===== */
     footer {
       position: absolute;
       bottom: 16px;
@@ -100,8 +111,10 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header -->
   <header>
     <a href="patch-notes.html">Patch Notes</a>
     <a href="staff.html">Staff</a>
@@ -109,23 +122,30 @@
     <a href="schedule.html">Schedule</a>
   </header>
 
+  <!-- Center -->
   <div class="center">
-    <img src="./images/server-icon.png" class="icon" alt="server icon" />
-    <h1>JEOUS</h1>
-    <h2>1.21.8~</h2>
+    <div class="panel">
+      <img src="./images/server-icon.png" class="icon" alt="server icon" />
+      <h1>JEOUS</h1>
+      <h2>1.21.8~</h2>
 
-    <div class="buttons">
-      <button class="btn" onclick="copyIP()">Join Now</button>
-      <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">Join Discord</button>
+      <div class="buttons">
+        <button class="btn" onclick="copyIP()">Join Now</button>
+        <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">
+          Join Discord
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>A project by tokita_nene</footer>
 
+  <!-- Script -->
   <script>
     function copyIP() {
       navigator.clipboard.writeText('mc.jeous.net');
-      alert('coppied mc.jeous.net');
+      alert('mc.jeous.net をコピーしました');
     }
   </script>
 
