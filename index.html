@@ -30,19 +30,21 @@
       top: 24px;
       left: 40px;
       display: flex;
-      gap: 28px;
-      font-size: 14px;
+      gap: 36px;          /* 間隔を広げた */
+      font-size: 18px;   /* ← ここで大きくしてる */
       z-index: 10;
     }
 
     header a {
-      color: #dff;
+      color: #eaffff;
       text-decoration: none;
-      opacity: 0.9;
+      opacity: 0.85;
+      transition: 0.2s;
     }
 
     header a:hover {
       opacity: 1;
+      text-shadow: 0 0 8px rgba(180, 255, 255, 0.8);
     }
 
     /* ===== Center ===== */
@@ -54,7 +56,7 @@
       text-align: center;
     }
 
-    /* ぼかしはこのパネルだけ */
+    /* 中央だけぼかすパネル */
     .panel {
       padding: 48px 64px;
       backdrop-filter: blur(4px);
@@ -95,6 +97,7 @@
       color: #eaffff;
       cursor: pointer;
       font-family: 'Minecraft', sans-serif;
+      transition: 0.2s;
     }
 
     .btn:hover {
