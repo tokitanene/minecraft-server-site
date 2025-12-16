@@ -10,8 +10,13 @@
       src: url('./fonts/Minecraft-Regular.otf') format('opentype');
     }
 
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Minecraft', sans-serif;
       background: #0b1324;
       color: white;
@@ -24,23 +29,80 @@
       padding: 0 20px;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 32px;
-    }
-
     .back {
       display: inline-block;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
       color: #aeeaff;
       text-decoration: none;
+      font-size: 14px;
     }
 
-    .rule {
-      padding: 16px;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    /* ===== Important Notice ===== */
+    .notice {
+      background: rgba(255,255,255,0.05);
+      border-left: 4px solid #ff6b6b;
+      padding: 20px;
+      margin-bottom: 40px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .notice p {
+      margin-bottom: 10px;
+    }
+
+    /* ===== Rule Section ===== */
+    .rule-section {
+      margin-bottom: 20px;
       border-left: 4px solid #4fd1ff;
-      background: rgba(255,255,255,0.03);
-      margin-bottom: 14px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .rule-title {
+      padding: 18px;
+      font-size: 20px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rule-title:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .arrow {
+      transition: 0.3s;
+    }
+
+    .rule-content {
+      display: none;
+      padding: 16px 20px 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .rule-content ul {
+      margin-left: 18px;
+    }
+
+    .rule-content li {
+      margin-bottom: 8px;
+    }
+
+    .rule-section.active .rule-content {
+      display: block;
+    }
+
+    .rule-section.active .arrow {
+      transform: rotate(90deg);
     }
   </style>
 </head>
@@ -51,10 +113,87 @@
 
     <h1>Server Rules</h1>
 
-    <div class="rule">・No cheating or unfair advantages</div>
-    <div class="rule">・Be respectful to other players</div>
-    <div class="rule">・No exploiting bugs</div>
-    <div class="rule">・Follow staff instructions</div>
+    <!-- ===== Notice ===== -->
+    <div class="notice">
+      <p>Using prohibited mods will result in punishment. (This applies to both current and past usage.)</p>
+      <p>Administrators can verify which mods and textures you are using.</p>
+      <p>If you believe you have been punished in error, please join the Discord server, create an Appeal a Punishment ticket, enter your username, and wait. An administrator will address your case as soon as possible.</p>
+      <p>If you are banned from the server, the reason for the ban will be listed on the Discord server alongside your username. This is visible to all players.</p>
+      <p>Administrators may impose penalties for any mods deemed inappropriate or cheating, even if they are not listed below.</p>
+    </div>
+
+    <!-- ===== Chat & Voice ===== -->
+    <div class="rule-section">
+      <div class="rule-title">
+        Chat and Voicechat Rules
+        <span class="arrow">▶</span>
+      </div>
+      <div class="rule-content">
+        <ul>
+          <li>No harassment, hate speech, or discrimination.</li>
+          <li>No spamming or excessive caps.</li>
+          <li>No advertising without staff permission.</li>
+          <li>Use appropriate language in public channels.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== Gameplay ===== -->
+    <div class="rule-section">
+      <div class="rule-title">
+        Gameplay Rules
+        <span class="arrow">▶</span>
+      </div>
+      <div class="rule-content">
+        <ul>
+          <li>No exploiting bugs or unintended mechanics.</li>
+          <li>No teaming where it is not allowed.</li>
+          <li>Play fair and respect competitive integrity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== Allowed Mods ===== -->
+    <div class="rule-section">
+      <div class="rule-title">
+        Allowed Mods
+        <span class="arrow">▶</span>
+      </div>
+      <div class="rule-content">
+        <ul>
+          <li>OptiFine</li>
+          <li>Sodium / Lithium / Phosphor</li>
+          <li>FPS and performance-enhancing mods</li>
+          <li>Cosmetic-only mods</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== Disallowed Mods ===== -->
+    <div class="rule-section">
+      <div class="rule-title">
+        Disallowed Mods
+        <span class="arrow">▶</span>
+      </div>
+      <div class="rule-content">
+        <ul>
+          <li>Auto-clickers or macros</li>
+          <li>X-Ray mods or texture packs</li>
+          <li>KillAura, Reach, Fly hacks</li>
+          <li>Any mod providing unfair advantage</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    document.querySelectorAll('.rule-title').forEach(title => {
+      title.addEventListener('click', () => {
+        title.parentElement.classList.toggle('active');
+      });
+    });
+  </script>
+
 </body>
 </html>
