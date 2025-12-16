@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Jeous | Schedule</title>
+
+  <style>
+    @font-face {
+      font-family: 'Minecraft';
+      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Minecraft', sans-serif;
+      color: white;
+      background: #0c0f14;
+    }
+
+    header {
+      padding: 24px 40px;
+    }
+
+    header a {
+      color: #eaffff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 42px;
+    }
+
+    /* カレンダー全体 */
+    .calendar {
+      max-width: 900px;
+      margin: 0 auto 80px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .calendar-header button {
+      background: none;
+      border: none;
+      color: #6cf;
+      font-size: 28px;
+      cursor: pointer;
+      font-family: 'Minecraft';
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+    }
+
+    .day {
+      text-align: center;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+
+    .date {
+      background: #151a23;
+      border: 1px solid #2a3245;
+      padding: 14px 0;
+      text-align: center;
+      cursor: default;
+    }
+
+    .date.event {
+      border-color: #6cf;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .date.event::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #6cf;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* モーダル */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background: #151a23;
+      border: 1px solid #2a3245;
+      max-width: 420px;
+      margin: 15% auto;
+      padding: 24px;
+    }
+
+    .close {
+      float: right;
+      cursor: pointer;
+      color: #6cf;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: #eaffff;
+    }
+
+    .modal-content p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Home</a>
+</header>
+
+<h1>Schedule</h1>
+
+<div class="calendar">
+  <div class="calendar-header">
+    <button onclick="changeMonth(-1)">◀</button>
+    <div id="monthYear"></div>
+    <button onclick="changeMonth(1)">▶</button>
+  </div>
+
+  <div class="calendar-grid" id="calendar"></div>
+</div>
+
+<!-- モーダル -->
+<div id="eventModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeEvent()">×</span>
+    <div id="eventDetails"></div>
+  </div>
+</div>
+
+<script>
+const events = {
+  "2025-09-06": {
+    title: "SkyBattle Tournament",
+    time: "18:00 - 20:00",
+    host: "D_daidaidai7"
+  },
+  "2025-09-12": {
+    title: "BattleBox Practice",
+    time: "19:00 - 21:00",
+    host: "mikofi"
+  }
+};
+
+let currentDate = new Date();
+
+function renderCalendar() {
+  const calendar = document.getElementById("calendar");
+  calendar.innerHTML = `
+    <div class="day">Sun</div>
+    <div class="day">Mon</div>
+    <div class="day">Tue</div>
+    <div class="day">Wed</div>
+    <div class="day">Thu</div>
+    <div class="day">Fri</div>
+    <div class="day">Sat</div>
+  `;
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  document.getElementById("monthYear").innerText =
+    `${year} / ${month + 1}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    calendar.innerHTML += `<div></div>`;
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const key =
+      `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+    if (events[key]) {
+      calendar.innerHTML += `
+        <div class="date event" onclick="openEvent('${key}')">${day}</div>
+      `;
+    } else {
+      calendar.innerHTML += `<div class="date">${day}</div>`;
+    }
+  }
+}
+
+function changeMonth(diff) {
+  currentDate.setMonth(currentDate.getMonth() + diff);
+  renderCalendar();
+}
+
+function openEvent(key) {
+  const e = events[key];
+  document.getElementById("eventDetails").innerHTML = `
+    <h3>${e.title}</h3>
+    <p><b>Date:</b> ${key}</p>
+    <p><b>Time:</b> ${e.time}</p>
+    <p><b>Host:</b> ${e.host}</p>
+  `;
+  document.getElementById("eventModal").style.display = "block";
+}
+
+function closeEvent() {
+  document.getElementById("eventModal").style.display = "none";
+}
+
+renderCalendar();
+</script>
+
+</body>
+</html>
 
