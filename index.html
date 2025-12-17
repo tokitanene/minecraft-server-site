@@ -47,7 +47,7 @@ header a:hover { color: #ffffff; }
 .lang-btn {
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
   border: 1px solid rgba(255,255,255,0.25);
   cursor: pointer;
   font-size: 14px;
@@ -56,11 +56,13 @@ header a:hover { color: #ffffff; }
   position: absolute;
   right: 0;
   top: 42px;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.95);
   border-radius: 10px;
   padding: 6px;
   display: none;
-  min-width: 200px;
+  min-width: 210px;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 .lang-menu div {
   padding: 8px;
@@ -285,7 +287,23 @@ h1 {
 <script>
 const translations = {
   en:{flag:"🇺🇸",name:"English",tagline:"The best competitive server in Asia",join:"Join Server",discord:"Join Discord",howto:"How to join Jeous Server",serveraddr:"Server Address",versionlabel:"Version",copy:"copy",step1:"Multiplayer in Minecraft → Add Server",step2:"Enter mc.jeous.net as the server address.",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games"},
-  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",serveraddr:"サーバーアドレス",versionlabel:"バージョン",copy:"コピー",step1:"マルチプレイ → サーバーを追加",step2:"サーバーアドレスに mc.jeous.net を入力"}
+  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",serveraddr:"サーバーアドレス",versionlabel:"バージョン",copy:"コピー",step1:"マルチプレイ → サーバーを追加",step2:"サーバーアドレスに mc.jeous.net を入力"},
+  zhCN:{flag:"🇨🇳",name:"简体中文",tagline:"亚洲最强竞技服务器",join:"加入服务器",discord:"加入 Discord",howto:"加入方式",serveraddr:"服务器地址",versionlabel:"版本",copy:"复制",step1:"多人游戏 → 添加服务器",step2:"输入 mc.jeous.net"},
+  zhTW:{flag:"🇹🇼",name:"繁體中文",tagline:"亞洲最佳競技伺服器",join:"加入伺服器",discord:"加入 Discord"},
+  ko:{flag:"🇰🇷",name:"한국어",tagline:"아시아 최고의 경쟁 서버",join:"서버 참가",discord:"디스코드 참가"},
+  id:{flag:"🇮🇩",name:"Indonesia",tagline:"Server kompetitif terbaik di Asia",join:"Gabung Server",discord:"Gabung Discord"},
+  th:{flag:"🇹🇭",name:"ไทย",tagline:"เซิร์ฟเวอร์แข่งขันที่ดีที่สุดในเอเชีย",join:"เข้าร่วมเซิร์ฟเวอร์"},
+  vi:{flag:"🇻🇳",name:"Tiếng Việt",tagline:"Máy chủ cạnh tranh tốt nhất châu Á",join:"Tham gia máy chủ"},
+  tl:{flag:"🇵🇭",name:"Filipino",tagline:"Pinakamahusay na server sa Asya",join:"Sumali sa Server"},
+  ms:{flag:"🇲🇾",name:"Melayu",tagline:"Server kompetitif terbaik di Asia",join:"Sertai Server"},
+  hi:{flag:"🇮🇳",name:"हिन्दी",tagline:"एशिया का सर्वश्रेष्ठ सर्वर",join:"सर्वर में शामिल हों"},
+  bn:{flag:"🇧🇩",name:"বাংলা",tagline:"এশিয়ার সেরা সার্ভার",join:"সার্ভারে যোগ দিন"},
+  ur:{flag:"🇵🇰",name:"اردو",tagline:"ایشیا کا بہترین سرور",join:"سرور میں شامل ہوں"},
+  si:{flag:"🇱🇰",name:"සිංහල",tagline:"ආසියාවේ හොඳම සර්වර්",join:"සර්වර් එකට එක්වන්න"},
+  ar:{flag:"🇸🇦",name:"العربية",tagline:"أفضل خادم تنافسي في آسيا",join:"الانضمام إلى الخادم"},
+  tr:{flag:"🇹🇷",name:"Türkçe",tagline:"Asya'nın en iyi sunucusu",join:"Sunucuya Katıl"},
+  fa:{flag:"🇮🇷",name:"فارسی",tagline:"بهترین سرور آسیا",join:"ورود به سرور"},
+  he:{flag:"🇮🇱",name:"עברית",tagline:"השרת הטוב ביותר באסיה",join:"הצטרף לשרת"}
 };
 
 function toggleLang(){
@@ -294,7 +312,7 @@ function toggleLang(){
 }
 
 function setLang(lang){
-  document.querySelector(".lang-btn").innerText=
+  document.querySelector(".lang-btn").innerText =
     translations[lang].flag+" "+translations[lang].name;
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
