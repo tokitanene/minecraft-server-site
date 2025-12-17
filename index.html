@@ -1,185 +1,274 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Jeous</title>
+<meta charset="UTF-8" />
+<title>Jeous</title>
 
-  <style>
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
-    }
+<style>
+@font-face {
+  font-family: 'Minecraft';
+  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Minecraft', sans-serif;
-      height: 100vh;
-      color: white;
-      background: url('./images/background.gif') center / cover no-repeat;
-      overflow: hidden;
-    }
+body {
+  font-family: 'Minecraft', sans-serif;
+  height: 100vh;
+  color: white;
+  background: url('./images/background.gif') center/cover no-repeat;
+}
 
-    /* ===== Header ===== */
-    header {
-      position: fixed;
-      top: 24px;
-      left: 40px;
-      right: 40px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      font-size: 16px;
-      z-index: 10;
-    }
+/* ===== Header ===== */
+header {
+  position: absolute;
+  top: 24px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
 
-    header a {
-      color: #eaffff;
-      text-decoration: none;
-      opacity: 0.9;
-      transition: 0.2s;
-      cursor: pointer;
-    }
+header .nav {
+  display: flex;
+  gap: 28px;
+}
 
-    header a:hover {
-      opacity: 1;
-      text-shadow: 0 0 8px #7ffcff;
-    }
+header a {
+  color: #dff;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-    /* 右端IP */
-    .server-ip {
-      margin-left: auto;
-      color: #bff6ff;
-      cursor: pointer;
-      opacity: 0.9;
-    }
+header a:hover {
+  opacity: 1;
+}
 
-    .server-ip:hover {
-      opacity: 1;
-      text-shadow: 0 0 10px #7ffcff;
-    }
+.ip-copy {
+  cursor: pointer;
+  opacity: 0.9;
+}
 
-    /* ===== Center ===== */
-    .center {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      backdrop-filter: blur(2px);
-      pointer-events: none;
-    }
+.ip-copy:hover {
+  text-decoration: underline;
+}
 
-    .center * {
-      pointer-events: auto;
-    }
+/* ===== Center ===== */
+.center {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-    .icon {
-      width: 96px;
-      height: 96px;
-      image-rendering: pixelated;
-      margin-bottom: 18px;
-    }
+.icon {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  margin-bottom: 16px;
+}
 
-    h1 {
-      font-size: 72px;
-      letter-spacing: 6px;
-      color: transparent;
-      -webkit-text-stroke: 2px white;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 64px;
+  letter-spacing: 4px;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+}
 
-    .tagline {
-      font-size: 20px;
-      margin-bottom: 14px;
-      color: #bff6ff;
-      text-shadow: 0 0 14px rgba(120,255,255,0.8);
-    }
+.tagline {
+  font-size: 22px;
+  margin-top: 10px;
+  color: #eaffff;
+  text-shadow: 0 0 10px rgba(180,255,255,0.6);
+}
 
-    h2 {
-      font-size: 18px;
-      margin-bottom: 40px;
-      opacity: 0.9;
-    }
+h2 {
+  font-size: 18px;
+  margin: 18px 0 40px;
+}
 
-    /* ===== Buttons ===== */
-    .buttons {
-      display: flex;
-      gap: 20px;
-    }
+.buttons {
+  display: flex;
+  gap: 16px;
+}
 
-    .btn {
-      padding: 14px 26px;
-      border: 2px solid #cfe;
-      background: transparent;
-      color: #eaffff;
-      cursor: pointer;
-      font-family: 'Minecraft', sans-serif;
-      font-size: 14px;
-      transition: 0.2s;
-    }
+.btn {
+  padding: 12px 22px;
+  border: 2px solid #cfe;
+  background: transparent;
+  color: #eaffff;
+  cursor: pointer;
+  font-family: 'Minecraft', sans-serif;
+}
 
-    .btn:hover {
-      background: rgba(200,255,255,0.18);
-      box-shadow: 0 0 12px rgba(150,255,255,0.6);
-    }
+.btn:hover {
+  background: rgba(200,255,255,0.15);
+}
 
-    /* ===== Footer ===== */
-    footer {
-      position: fixed;
-      bottom: 16px;
-      left: 20px;
-      font-size: 12px;
-      opacity: 0.75;
-    }
-  </style>
+/* ===== Modal ===== */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  width: 420px;
+  background: #ffffff;
+  color: #222;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+}
+
+.modal h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.box {
+  background: #f4fff4;
+  border: 1px solid #cceacc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.input-copy {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.input-copy input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.copy-btn {
+  background: #4cd964;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.steps {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.steps span {
+  font-weight: bold;
+  color: #4cd964;
+}
+
+/* ===== Footer ===== */
+footer {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ===== Header ===== -->
-  <header>
-    <a href="rules.html">Rules</a>
+<header>
+  <div class="nav">
     <a href="patch-notes.html">Patch Notes</a>
+    <a href="rules.html">Rules</a>
     <a href="staff.html">Staff</a>
-    <a href="games.html">Games</a>
-    <a href="schedule.html">Schedule</a>
-
-    <!-- 右端 IP -->
-    <span class="server-ip" onclick="copyIP()">mc.jeous.net</span>
-  </header>
-
-  <!-- ===== Center ===== -->
-  <div class="center">
-    <img src="./images/server-icon.png" class="icon" alt="server icon">
-
-    <h1>JEOUS</h1>
-
-    <div class="tagline">The best competitive server in Asia</div>
-
-    <h2>1.21.8~</h2>
-
-    <div class="buttons">
-      <button class="btn" onclick="copyIP()">Join Now</button>
-      <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">
-        Join Discord
-      </button>
-    </div>
   </div>
 
-  <footer>A project by tokita_nene</footer>
+  <div class="ip-copy" onclick="copyIP()">
+    mc.jeous.net
+  </div>
+</header>
 
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText('mc.jeous.net');
-      alert('coppied mc.jeous.net');
-    }
-  </script>
+<div class="center">
+  <img src="./images/server-icon.png" class="icon">
+  <h1>JEOUS</h1>
+  <div class="tagline">The best competitive server in Asia</div>
+  <h2>1.21.8~</h2>
+
+  <div class="buttons">
+    <button class="btn" onclick="openModal()">Join Now</button>
+    <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">Join Discord</button>
+  </div>
+</div>
+
+<footer>A project by tokita_nene</footer>
+
+<!-- ===== Modal ===== -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="close" onclick="closeModal()">×</div>
+    <h3>How to join jeous server</h3>
+
+    <div class="box">
+      <div class="label">Server Adress</div>
+      <div class="input-copy">
+        <input value="mc.jeous.net" readonly>
+        <button class="copy-btn" onclick="copyIP()">copyIP</button>
+      </div>
+
+      <div class="label" style="margin-top:12px;">対応バージョン</div>
+      <input value="1.21.8以上" readonly>
+    </div>
+
+    <div class="steps">
+      <p><span>1</span> Minecraftを起動し「マルチプレイ」を選択</p>
+      <p><span>2</span> サーバー追加をクリック</p>
+      <p><span>3</span> アドレスに <b>mc.jeous.net</b> を入力</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function copyIP() {
+  navigator.clipboard.writeText('mc.jeous.net');
+  alert('mc.jeous.net をコピーしました');
+}
+</script>
 
 </body>
 </html>
