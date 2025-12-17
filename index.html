@@ -40,7 +40,6 @@ header a {
   text-decoration: none;
   margin-right: 26px;
 }
-
 header a:hover { color: #ffffff; }
 
 /* ===== LANGUAGE ===== */
@@ -61,7 +60,7 @@ header a:hover { color: #ffffff; }
   border-radius: 10px;
   padding: 6px;
   display: none;
-  min-width: 180px;
+  min-width: 200px;
 }
 .lang-menu div {
   padding: 8px;
@@ -120,10 +119,7 @@ h1 {
   cursor: pointer;
   font-family: 'Minecraft';
 }
-
-.btn:hover {
-  background: rgba(177,140,255,0.4);
-}
+.btn:hover { background: rgba(177,140,255,0.4); }
 
 /* ===== MODAL ===== */
 .modal-bg {
@@ -139,9 +135,11 @@ h1 {
 .modal {
   position: relative;
   width: 520px;
+  max-height: 85vh;
   background: #ffffff;
   color: #000;
   border-radius: 10px;
+  overflow-y: auto;
   padding: 24px;
 }
 
@@ -152,6 +150,71 @@ h1 {
   cursor: pointer;
   font-size: 22px;
   color: #9b6cff;
+}
+
+/* ===== INFO BOX ===== */
+.info-box {
+  background: #f1ebff;
+  border: 2px solid #b18cff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-family: 'Minecraft';
+}
+
+.copy-btn {
+  background: #9b6cff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: 'Minecraft';
+}
+
+.step {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.step-num {
+  background: #9b6cff;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 14px;
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #9b6cff;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 6px;
+  display: none;
+  z-index: 200;
 }
 </style>
 </head>
@@ -187,24 +250,42 @@ h1 {
   </div>
 </div>
 
+<!-- ===== JOIN SERVER MODAL ===== -->
 <div class="modal-bg" id="modal" onclick="closeModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="close" onclick="closeModal()">✕</div>
+
     <h2 data-i18n="howto">How to join Jeous Server</h2>
-    <p data-i18n="step1">Multiplayer → Add Server</p>
-    <p data-i18n="step2">Enter mc.jeous.net</p>
+
+    <div class="info-box">
+      <div class="label" data-i18n="serveraddr">Server Address</div>
+      <div class="input-row">
+        <input class="input" value="mc.jeous.net" readonly>
+        <button class="copy-btn" onclick="copyIP()" data-i18n="copy">copy</button>
+      </div>
+
+      <div class="label" style="margin-top:12px;" data-i18n="versionlabel">Version</div>
+      <input class="input" value="1.21.8～" readonly>
+    </div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div data-i18n="step1">Multiplayer in Minecraft → Add Server</div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div data-i18n="step2">Enter mc.jeous.net as the server address.</div>
+    </div>
   </div>
 </div>
 
+<div class="toast" id="toast">IP copied to clipboard</div>
+
 <script>
 const translations = {
-  en:{flag:"🇺🇸",name:"English",tagline:"The best competitive server in Asia",join:"Join Server",discord:"Join Discord",howto:"How to join Jeous Server",step1:"Multiplayer → Add Server",step2:"Enter mc.jeous.net",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games"},
-  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",step1:"マルチプレイ → サーバー追加",step2:"mc.jeous.net を入力"},
-  zhCN:{flag:"🇨🇳",name:"简体中文",tagline:"亚洲最强竞技服务器",join:"加入服务器",discord:"加入 Discord"},
-  ko:{flag:"🇰🇷",name:"한국어",tagline:"아시아 최고의 경쟁 서버",join:"서버 참가",discord:"디스코드 참가"},
-  id:{flag:"🇮🇩",name:"Indonesia",tagline:"Server kompetitif terbaik di Asia",join:"Gabung Server",discord:"Gabung Discord"},
-  th:{flag:"🇹🇭",name:"ไทย",tagline:"เซิร์ฟเวอร์แข่งขันที่ดีที่สุดในเอเชีย",join:"เข้าร่วมเซิร์ฟเวอร์"},
-  vi:{flag:"🇻🇳",name:"Tiếng Việt",tagline:"Máy chủ cạnh tranh tốt nhất châu Á",join:"Tham gia máy chủ"}
+  en:{flag:"🇺🇸",name:"English",tagline:"The best competitive server in Asia",join:"Join Server",discord:"Join Discord",howto:"How to join Jeous Server",serveraddr:"Server Address",versionlabel:"Version",copy:"copy",step1:"Multiplayer in Minecraft → Add Server",step2:"Enter mc.jeous.net as the server address.",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games"},
+  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",serveraddr:"サーバーアドレス",versionlabel:"バージョン",copy:"コピー",step1:"マルチプレイ → サーバーを追加",step2:"サーバーアドレスに mc.jeous.net を入力"}
 };
 
 function toggleLang(){
@@ -233,6 +314,13 @@ Object.keys(translations).forEach(l=>{
 
 function openModal(){ document.getElementById("modal").style.display="flex"; }
 function closeModal(){ document.getElementById("modal").style.display="none"; }
+
+function copyIP(){
+  navigator.clipboard.writeText("mc.jeous.net");
+  const t=document.getElementById("toast");
+  t.style.display="block";
+  setTimeout(()=>t.style.display="none",2000);
+}
 
 setLang("en");
 </script>
