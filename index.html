@@ -1,326 +1,186 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jeous</title>
+<meta charset="UTF-8">
+<title>Jeous</title>
 
-  <style>
-    /* ===== Font ===== */
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
-    }
+<!-- Minecraft Font -->
+<style>
+@font-face {
+  font-family: 'Minecraft';
+  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Minecraft', sans-serif;
-      height: 100vh;
-      color: white;
-      background: url('./images/background.gif') center/cover no-repeat;
-    }
+body {
+  font-family: 'Minecraft', sans-serif;
+  height: 100vh;
+  color: white;
+  background: url('./images/background.gif') center/cover no-repeat;
+}
 
-    /* ===== Header ===== */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
-    }
+/* ===== TOP NAV ===== */
+header {
+  position: absolute;
+  top: 24px;
+  left: 40px;
+  display: flex;
+  gap: 28px;
+  font-size: 18px;
+  z-index: 10;
+}
 
-    nav {
-      display: flex;
-      gap: 28px;
-      font-size: 16px;
-    }
+header a {
+  color: #e6ddff;
+  text-decoration: none;
+  opacity: 0.85;
+}
 
-    nav a {
-      color: #e6e6ff;
-      text-decoration: none;
-      opacity: 0.9;
-    }
+header a:hover {
+  opacity: 1;
+}
 
-    nav a:hover { opacity: 1; }
+/* ===== IP COPY ===== */
+.ip {
+  position: absolute;
+  top: 24px;
+  right: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #e6ddff;
+}
 
-    .copy-ip {
-      cursor: pointer;
-      color: #c4b5fd;
-    }
+/* ===== CENTER ===== */
+.center {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
 
-    /* ===== Center ===== */
-    .center {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      backdrop-filter: blur(2px);
-    }
+.icon {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  margin-bottom: 16px;
+}
 
-    .icon {
-      width: 96px;
-      height: 96px;
-      image-rendering: pixelated;
-      margin-bottom: 16px;
-    }
+h1 {
+  font-size: 64px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
 
-    h1 {
-      font-size: 64px;
-      letter-spacing: 4px;
-      color: transparent;
-      -webkit-text-stroke: 2px white;
-    }
+.tagline {
+  font-size: 20px;
+  color: #cbbcff;
+  margin-bottom: 12px;
+}
 
-    .tagline {
-      font-size: 18px;
-      color: #c4b5fd;
-      margin-top: 10px;
-      text-shadow: 0 0 10px rgba(139,92,246,0.8);
-    }
+.version {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
 
-    h2 {
-      font-size: 18px;
-      margin: 14px 0 36px;
-      color: white;
-    }
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  gap: 16px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 16px;
-    }
+.btn {
+  padding: 14px 24px;
+  border: 2px solid #a88cff;
+  background: rgba(168,140,255,0.15);
+  color: #f0ebff;
+  cursor: pointer;
+  font-family: 'Minecraft', sans-serif;
+}
 
-    .btn {
-      padding: 12px 22px;
-      border: 2px solid #c4b5fd;
-      background: transparent;
-      color: #ede9fe;
-      cursor: pointer;
-      font-family: 'Minecraft', sans-serif;
-    }
+.btn:hover {
+  background: rgba(168,140,255,0.35);
+}
 
-    .btn:hover {
-      background: rgba(139,92,246,0.2);
-    }
+/* ===== FOOTER ===== */
+footer {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-size: 12px;
+  opacity: 0.8;
+}
 
-    footer {
-      position: fixed;
-      bottom: 16px;
-      left: 20px;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-
-    /* ===== Toast ===== */
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #8b5cf6;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 6px;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: 0.3s;
-      z-index: 200;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== Join Modal ===== */
-    .join-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-
-    .join-box {
-      background: #ffffff;
-      width: 520px;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 10px;
-      padding: 20px 24px;
-      color: #222;
-    }
-
-    .join-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    .server-info {
-      background: #f6f3ff;
-      border: 1px solid #c4b5fd;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 24px;
-    }
-
-    .server-info h3 { margin-bottom: 12px; }
-
-    label {
-      display: block;
-      margin: 12px 0 6px;
-      font-size: 13px;
-    }
-
-    .ip-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .ip-text {
-      flex: 1;
-      border: 1px solid #c4b5fd;
-      padding: 10px;
-      font-family: 'Minecraft', monospace;
-      background: #fff;
-    }
-
-    .copy-btn {
-      background: #8b5cf6;
-      color: white;
-      border: none;
-      padding: 0 16px;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .version-box {
-      border: 1px solid #c4b5fd;
-      padding: 10px;
-      background: #fff;
-    }
-
-    .steps h3 { margin-bottom: 12px; }
-
-    .step {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .step span {
-      width: 28px;
-      height: 28px;
-      background: #8b5cf6;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 28px;
-    }
-
-    .step p { font-size: 13px; margin-top: 4px; }
-  </style>
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #6f4cff;
+  padding: 12px 18px;
+  border-radius: 6px;
+  display: none;
+  z-index: 100;
+}
+</style>
 </head>
+
 <body>
 
+<!-- ===== NAV ===== -->
 <header>
-  <nav>
-    <a href="rules.html">Rules</a>
-    <a href="patch-notes.html">Patch Notes</a>
-    <a href="staff.html">Staff</a>
-    <a href="games.html">Games</a>
-    <a href="schedule.html">Schedule</a>
-  </nav>
-  <div class="copy-ip" onclick="copyIP()">mc.jeous.net</div>
+  <a href="patch-notes.html">Patch Notes</a>
+  <a href="rules.html">Rules</a>
+  <a href="staff.html">Staff</a>
+  <a href="rank.html">Rank</a>
+  <a href="games.html">Games</a>
+  <a href="schedule.html">Schedule</a>
 </header>
 
+<!-- ===== IP ===== -->
+<div class="ip" onclick="copyIP()">mc.jeous.net</div>
+
+<!-- ===== MAIN ===== -->
 <div class="center">
-  <img src="./images/server-icon.png" class="icon" />
+  <img src="./images/server-icon.png" class="icon" alt="Server Icon" />
+
   <h1>JEOUS</h1>
   <div class="tagline">The best competitive server in Asia</div>
-  <h2>1.21.8~</h2>
+  <div class="version">1.21.8~</div>
 
   <div class="buttons">
     <button class="btn" onclick="openJoin()">Join Server</button>
-    <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">Join Discord</button>
+    <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">
+      Join Discord
+    </button>
   </div>
 </div>
 
 <footer>A project by tokita_nene</footer>
 
-<div class="toast" id="toast">IP address copied!</div>
-
-<!-- JOIN MODAL -->
-<div class="join-modal" id="joinModal">
-  <div class="join-box">
-    <div class="join-header">
-      <span>How to join Jeous server</span>
-      <button class="close-btn" onclick="closeJoin()">×</button>
-    </div>
-
-    <div class="server-info">
-      <h3>Server info</h3>
-      <label>Server Adress</label>
-      <div class="ip-row">
-        <div class="ip-text">mc.jeous.net</div>
-        <button class="copy-btn" onclick="copyIP()">copy</button>
-      </div>
-
-      <label>Supported Versions</label>
-      <div class="version-box">1.21.8~</div>
-    </div>
-
-    <div class="steps">
-      <h3>How to join Jeous server</h3>
-      <div class="step">
-        <span>1</span>
-        <div>
-          <b>In Minecraft, click Add Server from Multiplayer.</b>
-          <p>From the main menu, select “Multiplayer” → “Add Server”.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span>2</span>
-        <div>
-          <b>Enter mc.jeous.net</b>
-          <p>Enter the server address and press “Done”.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="toast" id="toast">IP copied to clipboard</div>
 
 <script>
-function openJoin() {
-  document.getElementById('joinModal').style.display = 'flex';
-}
-
-function closeJoin() {
-  document.getElementById('joinModal').style.display = 'none';
-}
-
 function copyIP() {
   navigator.clipboard.writeText('mc.jeous.net');
   const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 2000);
+}
+
+function openJoin() {
+  alert(
+    'Server Address:\\nmc.jeous.net\\n\\nVersion:\\n1.21.8 or later'
+  );
 }
 </script>
 
