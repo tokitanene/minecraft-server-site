@@ -10,14 +10,8 @@
   src: url('./fonts/Minecraft-Regular.otf') format('opentype');
 }
 
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ===== BODY ===== */
 body {
   font-family: 'Minecraft', sans-serif;
   background: url('./images/background.gif') center/cover no-repeat;
@@ -31,63 +25,47 @@ header {
   position: absolute;
   top: 20px;
   left: 40px;
+  right: 40px;
   display: flex;
-  gap: 26px;
-  font-size: 16px;
-  z-index: 10;
+  justify-content: space-between;
   align-items: center;
+  z-index: 10;
 }
 
 header a {
   color: #e6dcff;
   text-decoration: none;
+  margin-right: 26px;
 }
 
-header a:hover {
-  color: #ffffff;
-}
+header a:hover { color: #fff; }
 
-/* ===== LANGUAGE SELECTOR ===== */
-.lang-wrapper {
-  position: relative;
-}
-
+/* ===== LANGUAGE UI ===== */
+.lang-wrapper { position: relative; }
 .lang-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.3);
   cursor: pointer;
-  font-size: 14px;
-  padding: 6px 10px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  background: rgba(20,20,20,0.7);
-  user-select: none;
 }
-
-.lang-btn:hover {
-  background: rgba(255,255,255,0.1);
-}
-
 .lang-menu {
+  display: none;
   position: absolute;
-  top: 34px;
   right: 0;
-  background: rgba(15,15,15,0.95);
-  border: 1px solid #333;
+  top: 40px;
+  background: rgba(0,0,0,0.9);
   border-radius: 10px;
   padding: 6px;
-  display: none;
-  min-width: 120px;
-  z-index: 999;
+  min-width: 190px;
 }
-
 .lang-menu div {
   padding: 8px;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  border-radius: 6px;
 }
-
 .lang-menu div:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.15);
 }
 
 /* ===== CENTER ===== */
@@ -101,12 +79,7 @@ header a:hover {
   text-align: center;
 }
 
-.icon {
-  width: 96px;
-  image-rendering: pixelated;
-  margin-bottom: 10px;
-}
-
+.icon { width: 96px; image-rendering: pixelated; }
 h1 {
   font-size: 64px;
   letter-spacing: 4px;
@@ -114,133 +87,42 @@ h1 {
   color: transparent;
 }
 
-.tagline {
-  margin-top: 6px;
-  font-size: 18px;
-  color: #d9caff;
-}
-
-.version {
-  margin: 12px 0 30px;
-  font-size: 16px;
-}
-
-.buttons {
-  display: flex;
-  gap: 16px;
-}
+.tagline { margin-top: 6px; font-size: 18px; color: #d9caff; }
+.version { margin: 12px 0 30px; }
 
 .btn {
   padding: 12px 22px;
   border: 2px solid #b18cff;
   background: rgba(177,140,255,0.2);
-  color: #f4eeff;
+  color: #fff;
   cursor: pointer;
-  font-family: 'Minecraft';
-}
-
-.btn:hover {
-  background: rgba(177,140,255,0.4);
+  margin: 0 8px;
 }
 
 /* ===== MODAL ===== */
 .modal-bg {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  display: none;
   justify-content: center;
   align-items: center;
-  z-index: 100;
 }
 
 .modal {
-  position: relative;
-  width: 520px;
-  max-height: 85vh;
-  background: #ffffff;
-  color: #000;
+  background: white;
+  color: black;
   border-radius: 10px;
-  overflow-y: auto;
   padding: 24px;
+  width: 520px;
+  position: relative;
 }
 
 .close {
   position: absolute;
   right: 20px;
-  top: 16px;
+  top: 14px;
   cursor: pointer;
-  font-size: 22px;
-  color: #9b6cff;
-}
-
-.modal h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.info-box {
-  background: #f1ebff;
-  border: 2px solid #b18cff;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
-
-.label {
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.input-row {
-  display: flex;
-  gap: 10px;
-}
-
-.input {
-  flex: 1;
-  border: 1px solid #ccc;
-  padding: 8px;
-  font-family: 'Minecraft';
-}
-
-.copy-btn {
-  background: #9b6cff;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-family: 'Minecraft';
-}
-
-.step {
-  display: flex;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.step-num {
-  background: #9b6cff;
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 24px;
-  font-size: 14px;
-}
-
-/* ===== TOAST ===== */
-.toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #9b6cff;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 6px;
-  display: none;
-  z-index: 200;
 }
 </style>
 </head>
@@ -248,19 +130,17 @@ h1 {
 <body>
 
 <header>
-  <a href="rules.html" data-i18n="rules">Rules</a>
-  <a href="patch-notes.html" data-i18n="patch">Patch Notes</a>
-  <a href="staff.html" data-i18n="staff">Staff</a>
-  <a href="rank.html" data-i18n="rank">Rank</a>
-  <a href="games.html" data-i18n="games">Games</a>
+  <div>
+    <a data-i18n="rules">Rules</a>
+    <a data-i18n="patch">Patch Notes</a>
+    <a data-i18n="staff">Staff</a>
+    <a data-i18n="rank">Rank</a>
+    <a data-i18n="games">Games</a>
+  </div>
 
   <div class="lang-wrapper">
-    <div class="lang-btn" id="langBtn" onclick="toggleLangMenu()">🇺🇸 EN</div>
-    <div class="lang-menu" id="langMenu">
-      <div onclick="setLang('en')">🇺🇸 EN</div>
-      <div onclick="setLang('ja')">🇯🇵 JA</div>
-      <div onclick="setLang('zh')">🇨🇳 中文</div>
-    </div>
+    <div class="lang-btn" onclick="toggleLang()">🌐 English</div>
+    <div class="lang-menu" id="langMenu"></div>
   </div>
 </header>
 
@@ -269,124 +149,71 @@ h1 {
   <h1>JEOUS</h1>
   <div class="tagline" data-i18n="tagline">The best competitive server in Asia</div>
   <div class="version">1.21.8~</div>
-
-  <div class="buttons">
-    <button class="btn" onclick="openModal()" data-i18n="joinServer">Join Server</button>
-    <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')" data-i18n="joinDiscord">Join Discord</button>
-  </div>
+  <button class="btn" onclick="openModal()" data-i18n="join">Join Server</button>
 </div>
 
 <div class="modal-bg" id="modal" onclick="closeModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="close" onclick="closeModal()">✕</div>
-
-    <h2 data-i18n="howToJoin">How to join Jeous Server</h2>
-
-    <div class="info-box">
-      <div class="label" data-i18n="serverAddress">Server Address</div>
-      <div class="input-row">
-        <input class="input" value="mc.jeous.net" readonly>
-        <button class="copy-btn" onclick="copyIP()">copy</button>
-      </div>
-
-      <div class="label" style="margin-top:12px;" data-i18n="versionLabel">Version</div>
-      <input class="input" value="1.21.8～" readonly>
-    </div>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div data-i18n="step1">Multiplayer → Add Server</div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">2</div>
-      <div data-i18n="step2">Enter mc.jeous.net</div>
-    </div>
+    <h2 data-i18n="howto">How to join Jeous Server</h2>
+    <p data-i18n="step1">Multiplayer → Add Server</p>
+    <p data-i18n="step2">Enter mc.jeous.net</p>
   </div>
 </div>
 
-<div class="toast" id="toast">IP copied</div>
-
 <script>
 const translations = {
-  en: {
-    rules:"Rules", patch:"Patch Notes", staff:"Staff", rank:"Rank", games:"Games",
-    tagline:"The best competitive server in Asia",
-    joinServer:"Join Server", joinDiscord:"Join Discord",
-    howToJoin:"How to join Jeous Server",
-    serverAddress:"Server Address", versionLabel:"Version",
-    step1:"Multiplayer → Add Server",
-    step2:"Enter mc.jeous.net",
-    toast:"IP copied"
-  },
-  ja: {
-    rules:"ルール", patch:"パッチノート", staff:"スタッフ", rank:"ランク", games:"ゲーム",
-    tagline:"アジア最高峰の競技サーバー",
-    joinServer:"サーバーに参加", joinDiscord:"Discordに参加",
-    howToJoin:"Jeousサーバーへの参加方法",
-    serverAddress:"サーバーアドレス", versionLabel:"対応バージョン",
-    step1:"マルチプレイ → サーバー追加",
-    step2:"mc.jeous.net を入力",
-    toast:"IPをコピーしました"
-  },
-  zh: {
-    rules:"规则", patch:"更新日志", staff:"管理团队", rank:"等级", games:"游戏",
-    tagline:"亚洲最强竞技服务器",
-    joinServer:"加入服务器", joinDiscord:"加入 Discord",
-    howToJoin:"如何加入 Jeous 服务器",
-    serverAddress:"服务器地址", versionLabel:"支持版本",
-    step1:"多人游戏 → 添加服务器",
-    step2:"输入 mc.jeous.net",
-    toast:"IP 已复制"
-  }
+  en:{flag:"🇺🇸",name:"English",tagline:"The best competitive server in Asia",join:"Join Server",howto:"How to join Jeous Server",step1:"Multiplayer → Add Server",step2:"Enter mc.jeous.net",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games"},
+  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",howto:"参加方法",step1:"マルチプレイ → サーバー追加",step2:"mc.jeous.net を入力"},
+  zhCN:{flag:"🇨🇳",name:"简体中文",tagline:"亚洲最强竞技服务器",join:"加入服务器",howto:"加入方法",step1:"多人游戏 → 添加服务器",step2:"输入 mc.jeous.net"},
+  zhTW:{flag:"🇹🇼",name:"繁體中文",tagline:"亞洲最佳競技伺服器",join:"加入伺服器",howto:"加入方法",step1:"多人遊戲 → 新增伺服器",step2:"輸入 mc.jeous.net"},
+  ko:{flag:"🇰🇷",name:"한국어",tagline:"아시아 최고의 경쟁 서버",join:"서버 참가",howto:"참가 방법",step1:"멀티플레이 → 서버 추가",step2:"mc.jeous.net 입력"},
+  id:{flag:"🇮🇩",name:"Indonesia",tagline:"Server kompetitif terbaik di Asia",join:"Gabung Server",howto:"Cara bergabung",step1:"Multiplayer → Tambah Server",step2:"Masukkan mc.jeous.net"},
+  th:{flag:"🇹🇭",name:"ไทย",tagline:"เซิร์ฟเวอร์แข่งขันที่ดีที่สุดในเอเชีย",join:"เข้าร่วมเซิร์ฟเวอร์"},
+  vi:{flag:"🇻🇳",name:"Tiếng Việt",tagline:"Máy chủ cạnh tranh tốt nhất châu Á",join:"Tham gia máy chủ"},
+  tl:{flag:"🇵🇭",name:"Filipino",tagline:"Pinakamahusay na server sa Asya",join:"Sumali sa Server"},
+  ms:{flag:"🇲🇾",name:"Melayu",tagline:"Server kompetitif terbaik di Asia",join:"Sertai Server"},
+  hi:{flag:"🇮🇳",name:"हिन्दी",tagline:"एशिया का सर्वश्रेष्ठ सर्वर",join:"सर्वर में शामिल हों"},
+  bn:{flag:"🇧🇩",name:"বাংলা",tagline:"এশিয়ার সেরা সার্ভার",join:"সার্ভারে যোগ দিন"},
+  ur:{flag:"🇵🇰",name:"اردو",tagline:"ایشیا کا بہترین سرور",join:"سرور میں شامل ہوں"},
+  si:{flag:"🇱🇰",name:"සිංහල",tagline:"ආසියාවේ හොඳම සර්වර්",join:"සර්වර් එකට එක්වන්න"},
+  ar:{flag:"🇸🇦",name:"العربية",tagline:"أفضل خادم تنافسي في آسيا",join:"الانضمام إلى الخادم"},
+  tr:{flag:"🇹🇷",name:"Türkçe",tagline:"Asya'nın en iyi sunucusu",join:"Sunucuya Katıl"},
+  fa:{flag:"🇮🇷",name:"فارسی",tagline:"بهترین سرور آسیا",join:"ورود به سرور"},
+  he:{flag:"🇮🇱",name:"עברית",tagline:"השרת הטוב ביותר באסיה",join:"הצטרף לשרת"}
 };
 
-const langMeta = {
-  en:{flag:"🇺🇸", label:"EN"},
-  ja:{flag:"🇯🇵", label:"JA"},
-  zh:{flag:"🇨🇳", label:"中文"}
-};
+let currentLang = "en";
+
+function toggleLang(){
+  document.getElementById("langMenu").style.display =
+    document.getElementById("langMenu").style.display === "block" ? "none" : "block";
+}
 
 function setLang(lang){
-  localStorage.setItem("lang", lang);
-  document.documentElement.lang = lang;
+  currentLang = lang;
+  document.querySelector(".lang-btn").innerText =
+    translations[lang].flag + " " + translations[lang].name;
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key = el.dataset.i18n;
-    if(translations[lang][key]) el.textContent = translations[lang][key];
+    if(translations[lang][key]) el.innerText = translations[lang][key];
   });
-
-  document.getElementById("langBtn").textContent =
-    `${langMeta[lang].flag} ${langMeta[lang].label}`;
-
-  document.getElementById("toast").textContent = translations[lang].toast;
-  document.getElementById("langMenu").style.display="none";
+  document.getElementById("langMenu").style.display = "none";
 }
 
-function toggleLangMenu(){
-  const m=document.getElementById("langMenu");
-  m.style.display = m.style.display==="block"?"none":"block";
-}
-
-document.addEventListener("click",e=>{
-  if(!e.target.closest(".lang-wrapper")){
-    document.getElementById("langMenu").style.display="none";
-  }
+const menu = document.getElementById("langMenu");
+Object.keys(translations).forEach(l=>{
+  const d = document.createElement("div");
+  d.innerText = translations[l].flag+" "+translations[l].name;
+  d.onclick = ()=>setLang(l);
+  menu.appendChild(d);
 });
 
-function openModal(){document.getElementById("modal").style.display="flex";}
-function closeModal(){document.getElementById("modal").style.display="none";}
-function copyIP(){
-  navigator.clipboard.writeText("mc.jeous.net");
-  const t=document.getElementById("toast");
-  t.style.display="block";
-  setTimeout(()=>t.style.display="none",2000);
-}
+function openModal(){ document.getElementById("modal").style.display="flex"; }
+function closeModal(){ document.getElementById("modal").style.display="none"; }
 
-const saved=localStorage.getItem("lang");
-const auto=navigator.language.startsWith("ja")?"ja":
-           navigator.language.startsWith("zh")?"zh":"en";
-setLang(saved||auto);
+setLang("en");
 </script>
 
 </body>
