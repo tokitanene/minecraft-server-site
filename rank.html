@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jeous | Ranks</title>
+<title>Jeous | Rank</title>
 
 <style>
 @font-face {
@@ -11,9 +11,9 @@
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -23,46 +23,40 @@ body {
   min-height: 100vh;
 }
 
-a {
-  color: #a88cff;
-  text-decoration: none;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 24px;
+/* ===== TOP ===== */
+.top {
+  padding: 24px 40px;
 }
 
 .back {
-  margin-bottom: 24px;
-  display: inline-block;
-  color: #a88cff;
+  color: #bfa8ff;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 h1 {
+  margin-top: 20px;
   font-size: 36px;
-  margin-bottom: 24px;
 }
 
-/* ===== INFO BOX (赤ラインのやつ) ===== */
+/* ===== NOTICE ===== */
 .notice {
-  background: #111b33;
-  border-left: 4px solid #ff4d4d;
+  margin: 30px 40px;
   padding: 20px;
-  margin-bottom: 40px;
-  line-height: 1.8;
+  background: #0f1b33;
+  border-left: 4px solid #ff4c4c;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
 /* ===== RANK CARD ===== */
 .rank {
+  margin: 40px;
+  padding: 30px;
+  background: #0f1b33;
   display: flex;
-  gap: 32px;
-  align-items: center;
-  background: #111b33;
-  border-radius: 12px;
-  padding: 32px;
-  margin-bottom: 32px;
+  gap: 30px;
+  align-items: flex-start;
 }
 
 .rank img {
@@ -79,103 +73,137 @@ h1 {
   margin-bottom: 12px;
 }
 
-.rank p {
-  margin-bottom: 12px;
-  opacity: 0.9;
+.rank ul {
+  margin: 12px 0 20px 18px;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
-/* ===== PURPLE GUI BUTTON ===== */
-.apply-btn {
-  display: inline-block;
-  padding: 14px 24px;
-  border: 2px solid #a88cff;
-  background: rgba(168,140,255,0.15);
-  color: #eae3ff;
+.reward {
+  margin-top: 12px;
+  color: #d7c9ff;
+}
+
+/* ===== BUTTONS ===== */
+.apply {
+  align-self: center;
+  padding: 14px 20px;
   font-family: 'Minecraft', sans-serif;
+  border: 2px solid #a88cff;
+  background: rgba(168,140,255,0.2);
+  color: #efe9ff;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
-.apply-btn:hover {
-  background: rgba(168,140,255,0.35);
+.apply:hover {
+  background: rgba(168,140,255,0.4);
+}
+
+/* disabled */
+.disabled {
+  border: 2px solid #666;
+  background: #333;
+  color: #aaa;
+  cursor: not-allowed;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="top">
+  <a class="back" href="index.html">← Back to Home</a>
+  <h1>Ranks</h1>
+</div>
 
-<a href="index.html" class="back">← Back to Home</a>
-
-<h1>Ranks</h1>
-
-<!-- ===== RED NOTICE ===== -->
+<!-- ===== NOTICE ===== -->
 <div class="notice">
-  <p>Click the Application button to join Discord.</p>
-  <p>
-    After joining, go to the 🎟️｜support channel, create a ticket in Rank Application,
-    write why you should receive that rank, and wait.
-  </p>
-  <p>
-    For YouTube Rank applications, please include a link to your YouTube channel and wait.
-    (That YouTube channel must be linked to your Discord account.)
-  </p>
+Click the Application button to join Discord.<br>
+After joining, go to the 🎟️｜support channel, create a ticket in Rank Application, write why you should receive that rank, and wait.<br>
+For YouTube Rank applications, please include a link to your YouTube channel and wait.
+(That YouTube channel must be linked to your Discord account.)
 </div>
 
 <!-- ===== ADMIN ===== -->
 <div class="rank">
-  <img src="./images/rank_admin.png" alt="Admin Rank">
+  <img src="./images/rank_admin.png" alt="Admin">
   <div class="rank-content">
     <h2>ADMIN</h2>
-    <p><strong>Requirements:</strong><br>
-      Trusted by server owners, extensive moderation experience.
-    </p>
-    <p><strong>Rewards:</strong><br>
-      Full administrative permissions, staff tools access.
-    </p>
+    <ul>
+      <li>Experience creating plugins, texture packs, and builds, with a passion for creating content related to the game and lobby.</li>
+      <li>Never having received any penalties from the server (including mutes/bans, and including the Discord server).</li>
+      <li>Ability to communicate effectively and frequently within the team.</li>
+      <li>Ability to behave in a manner that does not cause discomfort to other players.</li>
+      <li>Ability to use a high-performance, noise-free microphone.</li>
+      <li>Only those who meet the above conditions should apply.</li>
+      <li>An interview (Discord voice call) may be required. (Camera off / Microphone on)</li>
+      <li>If you no longer meet the conditions after being hired, you will be asked to leave your position.</li>
+    </ul>
+    <div class="reward">
+      Reward: Full administrative privileges, access to all commands.
+    </div>
+  </div>
 
-    <a class="apply-btn" href="https://discord.gg/NbvhrRzpNc" target="_blank">
-      Application
-    </a>
+  <div class="apply disabled">
+    We are not currently accepting applications.
   </div>
 </div>
 
 <!-- ===== MOD ===== -->
 <div class="rank">
-  <img src="./images/rank_mod.png" alt="Mod Rank">
+  <img src="./images/rank_mod.png" alt="MOD">
   <div class="rank-content">
     <h2>MOD</h2>
-    <p><strong>Requirements:</strong><br>
-      Active player, rule knowledge, ability to moderate chat and gameplay.
-    </p>
-    <p><strong>Rewards:</strong><br>
-      Moderation permissions, staff-only channels.
-    </p>
-
-    <a class="apply-btn" href="https://discord.gg/NbvhrRzpNc" target="_blank">
-      Application
-    </a>
+    <ul>
+      <li>Must not have been punished twice by the server (first ban is appealable).</li>
+      <li>Ability to monitor and penalize players when reports are made.</li>
+      <li>Knowledge of Minecraft and commands.</li>
+      <li>Sufficient English listening, speaking, and writing skills.</li>
+      <li>Ability to provide detailed reports on penalized players.</li>
+      <li>Ability to use a high-performance, noise-free microphone.</li>
+      <li>An interview (Discord voice call) may be required.</li>
+    </ul>
+    <div class="reward">
+      Rewards:
+      <ul>
+        <li>Permission to use the nick command</li>
+        <li>Permission to fly in the lobby</li>
+        <li>Permission to spectate matches</li>
+      </ul>
+    </div>
   </div>
+
+  <a class="apply" href="https://discord.gg/NbvhrRzpNc" target="_blank">
+    Application
+  </a>
 </div>
 
 <!-- ===== MEDIA ===== -->
 <div class="rank">
-  <img src="./images/rank_media.png" alt="Media Rank">
+  <img src="./images/rank_media.png" alt="Media">
   <div class="rank-content">
     <h2>MEDIA</h2>
-    <p><strong>Requirements:</strong><br>
-      YouTube or streaming activity related to Jeous.
-    </p>
-    <p><strong>Rewards:</strong><br>
-      Media tag, promotion support, special perks.
-    </p>
-
-    <a class="apply-btn" href="https://discord.gg/NbvhrRzpNc" target="_blank">
-      Application
-    </a>
+    <ul>
+      <li>Posting videos related to servers (including shorts).</li>
+      <li>Having 1,000 or more subscribers.</li>
+      <li>Maintaining orderly conduct within the Media Rank community.</li>
+      <li>Not having received punishment three or more times within the server.</li>
+    </ul>
+    <div class="reward">
+      Rewards:
+      <ul>
+        <li>Permission to use the nick command</li>
+        <li>Permission to fly in the lobby</li>
+        <li>Media rank displayed next to the name</li>
+      </ul>
+    </div>
   </div>
-</div>
 
+  <a class="apply" href="https://discord.gg/NbvhrRzpNc" target="_blank">
+    Application
+  </a>
 </div>
 
 </body>
