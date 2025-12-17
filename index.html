@@ -1,261 +1,227 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Jeous</title>
+  <meta charset="UTF-8">
+  <title>JEous | Join Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-@font-face {
-  font-family: 'Minecraft';
-  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
-}
+  <!-- Minecraft風フォント -->
+  <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    :root {
+      --purple: #8b5cf6;
+      --purple-light: #ede9fe;
+      --dark-bg: #0b1220;
+      --card-bg: #111827;
+    }
 
-body {
-  font-family: 'Minecraft', sans-serif;
-  background: url('./images/background.gif') center/cover no-repeat;
-  color: white;
-  height: 100vh;
-}
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--dark-bg);
+      color: #fff;
+    }
 
-/* ===== HEADER ===== */
-header {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  display: flex;
-  gap: 26px;
-  font-size: 16px;
-}
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      background: #020617;
+      border-bottom: 1px solid #1f2937;
+    }
 
-header a {
-  color: #e6dcff;
-  text-decoration: none;
-}
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
 
-header a:hover {
-  color: #ffffff;
-}
+    .nav a {
+      color: #c7d2fe;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-/* ===== CENTER ===== */
-.center {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(3px);
-}
+    .nav a:hover {
+      color: var(--purple);
+    }
 
-.icon {
-  width: 96px;
-  image-rendering: pixelated;
-  margin-bottom: 10px;
-}
+    .ip {
+      font-family: 'Minecraft', monospace;
+      cursor: pointer;
+      color: var(--purple);
+    }
 
-h1 {
-  font-size: 64px;
-  letter-spacing: 4px;
-  -webkit-text-stroke: 2px white;
-  color: transparent;
-}
+    /* ===== MAIN ===== */
+    main {
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-.tagline {
-  margin-top: 6px;
-  font-size: 18px;
-  color: #d9caff;
-}
+    .join-btn {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 16px 40px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
 
-.version {
-  margin: 12px 0 30px;
-  font-size: 16px;
-}
+    .join-btn:hover {
+      opacity: 0.9;
+    }
 
-.buttons {
-  display: flex;
-  gap: 16px;
-}
+    /* ===== MODAL ===== */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.btn {
-  padding: 12px 22px;
-  border: 2px solid #b18cff;
-  background: rgba(177,140,255,0.2);
-  color: #f4eeff;
-  cursor: pointer;
-  font-family: 'Minecraft';
-}
+    .modal {
+      background: #fff;
+      color: #000;
+      width: 92%;
+      max-width: 560px;
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
 
-.btn:hover {
-  background: rgba(177,140,255,0.4);
-}
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--purple);
+    }
 
-/* ===== MODAL ===== */
-.modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
+    .box {
+      background: var(--purple-light);
+      border: 1px solid #ddd6fe;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 24px;
+    }
 
-.modal {
-  width: 520px;
-  max-height: 85vh;
-  background: #ffffff;
-  color: #000;
-  border-radius: 10px;
-  overflow-y: auto;
-  padding: 24px;
-}
+    .ip-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
 
-.modal h2 {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
+    .ip-row input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+    }
 
-.close {
-  position: absolute;
-  right: 30px;
-  top: 20px;
-  cursor: pointer;
-  font-size: 18px;
-}
+    .copy-btn {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 0 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-/* ===== PURPLE BOX ===== */
-.info-box {
-  background: #f1ebff;           /* 薄い紫 */
-  border: 2px solid #b18cff;     /* 紫 */
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
-
-.label {
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-.input-row {
-  display: flex;
-  gap: 10px;
-}
-
-.input {
-  flex: 1;
-  border: 1px solid #ccc;
-  padding: 8px;
-  font-family: 'Minecraft';
-}
-
-.copy-btn {
-  background: #9b6cff;           /* 紫 */
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-family: 'Minecraft';
-}
-
-.step {
-  display: flex;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.step-num {
-  background: #9b6cff;
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 24px;
-  font-size: 14px;
-}
-
-/* ===== TOAST ===== */
-.toast {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #9b6cff;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 6px;
-  display: none;
-}
-</style>
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #111827;
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: none;
+      z-index: 2000;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <a href="rules.html">Rules</a>
-  <a href="patch-notes.html">Patch Notes</a>
-  <a href="staff.html">Staff</a>
-  <a href="rank.html">Rank</a>
-  <a href="games.html">Games</a>
+  <div class="nav">
+    <a href="#">Home</a>
+    <a href="#">Staff</a>
+    <a href="#">Rank</a>
+    <a href="#">Games</a>
+    <a href="#">Rules</a>
+  </div>
+  <div class="ip" onclick="copyIP()">mc.jeous.net</div>
 </header>
 
-<div class="center">
-  <img src="./images/server-icon.png" class="icon">
-  <h1>JEOUS</h1>
-  <div class="tagline">The best competitive server in Asia</div>
-  <div class="version">1.21.8~</div>
-
-  <div class="buttons">
-    <button class="btn" onclick="openModal()">Join Server</button>
-    <button class="btn" onclick="window.open('https://discord.gg/NbvhrRzpNc')">Join Discord</button>
-  </div>
-</div>
+<main>
+  <h1>The best competitive server in Asia</h1>
+  <button class="join-btn" onclick="openModal()">Join Server</button>
+</main>
 
 <!-- ===== MODAL ===== -->
-<div class="modal-bg" id="modal">
-  <div class="modal">
-    <div class="close" onclick="closeModal()">✕</div>
+<div class="modal-bg" id="joinModal" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="close-btn" onclick="closeModal()">×</button>
 
     <h2>How to join Jeous Server</h2>
 
-    <div class="info-box">
-      <div class="label">Server IP Address</div>
-      <div class="input-row">
-        <input class="input" value="mc.jeous.net" readonly>
+    <div class="box">
+      <strong>server info</strong>
+      <div class="ip-row">
+        <input value="mc.Jeous.net" readonly>
         <button class="copy-btn" onclick="copyIP()">copy</button>
       </div>
-
-      <div class="label" style="margin-top:12px;">Supported Versions</div>
-      <input class="input" value="1.21.8~" readonly>
+      <p>対応バージョン：1.21以上</p>
     </div>
 
-    <div class="step">
-      <div class="step-num">1</div>
-      <div>Multiplayer in Minecraft → Add Server</div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">2</div>
-      <div>Enter mc.jeous.net as the server address.</div>
-    </div>
+    <ol>
+      <li>Open “Multiplayer” in Minecraft</li>
+      <li>enter server adress <b>mc.Jeous.net</b></li>
+    </ol>
   </div>
 </div>
 
-<div class="toast" id="toast">IP copied to clipboard</div>
+<div class="toast" id="toast">IP address copied!</div>
 
 <script>
-function openModal() {
-  document.getElementById('modal').style.display = 'flex';
-}
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-}
-function copyIP() {
-  navigator.clipboard.writeText('mc.jeous.net');
-  const t = document.getElementById('toast');
-  t.style.display = 'block';
-  setTimeout(()=> t.style.display='none',2000);
-}
+  const modal = document.getElementById('joinModal');
+  const toast = document.getElementById('toast');
+
+  function openModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function copyIP() {
+    navigator.clipboard.writeText('play.namanko.net');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 2000);
+  }
+
+  // ESCキー対応
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
 </script>
 
 </body>
