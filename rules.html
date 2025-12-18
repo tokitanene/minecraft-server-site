@@ -1,198 +1,246 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Rules | Jeous</title>
+<meta charset="UTF-8">
+<title>Rules | Jeous</title>
 
-  <style>
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('./fonts/Minecraft-Regular.otf') format('opentype');
-    }
+<style>
+@font-face {
+  font-family: 'Minecraft';
+  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Minecraft', sans-serif;
-      background: #0b1324;
-      color: white;
-      min-height: 100vh;
-    }
+body {
+  font-family: 'Minecraft', sans-serif;
+  background: #0b1324;
+  color: white;
+  min-height: 100vh;
+}
 
-    .container {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
-    }
+/* ===== LANGUAGE ===== */
+.lang {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  z-index: 10;
+}
 
-    .back {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: #aeeaff;
-      text-decoration: none;
-      font-size: 14px;
-    }
+.lang select {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: 1px solid #4fd1ff;
+  padding: 6px 10px;
+  font-family: 'Minecraft';
+  cursor: pointer;
+}
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 24px;
-    }
+/* ===== CONTENT ===== */
+.container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
 
-    /* ===== Important Notice ===== */
-    .notice {
-      background: rgba(255,255,255,0.05);
-      border-left: 4px solid #ff6b6b;
-      padding: 20px;
-      margin-bottom: 40px;
-      font-size: 13px;
-      line-height: 1.6;
-    }
+.back {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #aeeaff;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-    .notice p {
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
 
-    /* ===== Rule Section ===== */
-    .rule-section {
-      margin-bottom: 20px;
-      border-left: 4px solid #4fd1ff;
-      background: rgba(255,255,255,0.04);
-    }
+/* ===== Notice ===== */
+.notice {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid #ff6b6b;
+  padding: 20px;
+  margin-bottom: 40px;
+  font-size: 13px;
+  line-height: 1.6;
+}
 
-    .rule-title {
-      padding: 18px;
-      font-size: 20px;
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.notice p { margin-bottom: 10px; }
 
-    .rule-title:hover {
-      background: rgba(255,255,255,0.06);
-    }
+/* ===== Rule Section ===== */
+.rule-section {
+  margin-bottom: 20px;
+  border-left: 4px solid #4fd1ff;
+  background: rgba(255,255,255,0.04);
+}
 
-    .arrow {
-      transition: 0.3s;
-    }
+.rule-title {
+  padding: 18px;
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .rule-content {
-      display: none;
-      padding: 16px 20px 20px;
-      font-size: 13px;
-      line-height: 1.6;
-      opacity: 0.95;
-    }
+.rule-title:hover {
+  background: rgba(255,255,255,0.06);
+}
 
-    .rule-content ul {
-      margin-left: 18px;
-    }
+.arrow { transition: 0.3s; }
 
-    .rule-content li {
-      margin-bottom: 8px;
-    }
+.rule-content {
+  display: none;
+  padding: 16px 20px 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
 
-    .rule-section.active .rule-content {
-      display: block;
-    }
+.rule-content ul { margin-left: 18px; }
+.rule-content li { margin-bottom: 8px; }
 
-    .rule-section.active .arrow {
-      transform: rotate(90deg);
-    }
-  </style>
+.rule-section.active .rule-content { display: block; }
+.rule-section.active .arrow { transform: rotate(90deg); }
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <a class="back" href="index.html">← Back to Home</a>
 
-    <h1>Server Rules</h1>
+<div class="lang">
+  <select id="langSelect" onchange="setLang(this.value)"></select>
+</div>
 
-    <!-- ===== Notice ===== -->
-    <div class="notice">
-      <p>Using prohibited mods will result in punishment. (This applies to both current and past usage.)</p>
-      <p>Administrators can verify which mods and textures you are using.</p>
-      <p>If you believe you have been punished in error, please join the Discord server, create an Appeal a Punishment ticket, enter your username, and wait. An administrator will address your case as soon as possible.</p>
-      <p>If you are banned from the server, the reason for the ban will be listed on the Discord server alongside your username. This is visible to all players.</p>
-      <p>Administrators may impose penalties for any mods deemed inappropriate or cheating, even if they are not listed below.</p>
+<div class="container">
+  <a class="back" id="back" href="index.html">← Back to Home</a>
+  <h1 id="title"></h1>
+
+  <div class="notice" id="notice"></div>
+
+  <div class="rule-section">
+    <div class="rule-title">
+      <span id="chatTitle"></span>
+      <span class="arrow">▶</span>
     </div>
-
-    <!-- ===== Chat & Voice ===== -->
-    <div class="rule-section">
-      <div class="rule-title">
-        Chat and Voicechat Rules
-        <span class="arrow">▶</span>
-      </div>
-      <div class="rule-content">
-        <ul>
-          <li>No harassment, hate speech, or discrimination.</li>
-          <li>No spamming or excessive caps.</li>
-          <li>No advertising without staff permission.</li>
-          <li>Use appropriate language in public channels.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ===== Gameplay ===== -->
-    <div class="rule-section">
-      <div class="rule-title">
-        Gameplay Rules
-        <span class="arrow">▶</span>
-      </div>
-      <div class="rule-content">
-        <ul>
-          <li>No exploiting bugs or unintended mechanics.</li>
-          <li>No teaming where it is not allowed.</li>
-          <li>Play fair and respect competitive integrity.</li>
-          <li>Interfering with allies is prohibited.</li>
-          <li>Game trading is prohibited.</li>
-        </ul>
-      </div>
-    </div>
-
-
-    <!-- ===== Disallowed Mods ===== -->
-    <div class="rule-section">
-      <div class="rule-title">
-        Disallowed Mods
-        <span class="arrow">▶</span>
-      </div>
-      <div class="rule-content">
-        <ul>
-        <p style="font-size: 18px;">Any resource pack or mod that alters the opacity of a block that would normally not be transparent is prohibited.</p>
-          <li>X-Ray mods or texture packs</li>
-          <li>Clear Lava mods or texture packs</li>
-
-        <p style="font-size: 18px;">Mod that reveal enemy player locations are prohibited.</p>
-          <li>Minimap (With and without entities)</li>
-
-        <p style="font-size: 18px;">The use of mods that alter player movement is prohibited.</p>
-          <li>Reach</li>
-          <li>Fly hacks</li>
-          
-          <p style="font-size: 18px;">The use of mods that automate player movement is prohibited.</p>
-          <li>Mouse Tweaks</li>
-          <li>Auto-miners</li>
-          <li>Auto click</li>
-          <li>Aim Assist</li>
-        </ul>
-      </div>
-    </div>
-
+    <div class="rule-content" id="chatRules"></div>
   </div>
 
-  <script>
-    document.querySelectorAll('.rule-title').forEach(title => {
-      title.addEventListener('click', () => {
-        title.parentElement.classList.toggle('active');
-      });
-    });
-  </script>
+  <div class="rule-section">
+    <div class="rule-title">
+      <span id="gameTitle"></span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="rule-content" id="gameRules"></div>
+  </div>
+
+  <div class="rule-section">
+    <div class="rule-title">
+      <span id="modTitle"></span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="rule-content" id="modRules"></div>
+  </div>
+</div>
+
+<script>
+const t = {
+en:{
+back:"← Back to Home",
+title:"Server Rules",
+notice:`
+<p>Using prohibited mods will result in punishment. (This applies to both current and past usage.)</p>
+<p>Administrators can verify which mods and textures you are using.</p>
+<p>If you believe you have been punished in error, please join the Discord server, create an Appeal a Punishment ticket, enter your username, and wait.</p>
+<p>If you are banned, the reason will be listed on Discord publicly.</p>
+<p>Administrators may punish any mod deemed inappropriate.</p>
+`,
+chatTitle:"Chat and Voicechat Rules",
+chatRules:`<ul>
+<li>No harassment, hate speech, or discrimination.</li>
+<li>No spamming or excessive caps.</li>
+<li>No advertising without staff permission.</li>
+<li>Use appropriate language.</li>
+</ul>`,
+gameTitle:"Gameplay Rules",
+gameRules:`<ul>
+<li>No exploiting bugs.</li>
+<li>No teaming where disallowed.</li>
+<li>Play fair.</li>
+<li>No interfering with allies.</li>
+<li>No game trading.</li>
+</ul>`,
+modTitle:"Disallowed Mods",
+modRules:`<ul>
+<p style="font-size:18px;">Any transparency-altering resource pack is prohibited.</p>
+<li>X-Ray</li><li>Clear Lava</li>
+<p style="font-size:18px;">Mods revealing enemy locations are prohibited.</p>
+<li>Minimap</li>
+<p style="font-size:18px;">Movement altering mods are prohibited.</p>
+<li>Reach</li><li>Fly</li>
+<p style="font-size:18px;">Automation mods are prohibited.</p>
+<li>Auto click</li><li>Aim Assist</li>
+</ul>`
+},
+
+ja:{
+back:"← ホームに戻る",
+title:"サーバールール",
+notice:`
+<p>禁止MODの使用は処罰対象です（過去使用含む）。</p>
+<p>管理者は使用中のMODやテクスチャを確認できます。</p>
+<p>誤処罰だと思う場合はDiscordで異議申し立てを行ってください。</p>
+<p>BAN理由はDiscordで公開されます。</p>
+<p>記載外でも不正と判断されたMODは処罰対象です。</p>
+`,
+chatTitle:"チャット・VCルール",
+chatRules:`<ul><li>誹謗中傷禁止</li><li>スパム禁止</li><li>無断宣伝禁止</li><li>適切な言葉遣い</li></ul>`,
+gameTitle:"ゲームプレイルール",
+gameRules:`<ul><li>バグ利用禁止</li><li>禁止チーミング禁止</li><li>フェアプレイ</li><li>味方妨害禁止</li><li>取引禁止</li></ul>`,
+modTitle:"禁止MOD",
+modRules:`<ul><p style="font-size:18px;">透明化MODは禁止</p><li>X-Ray</li><li>Clear Lava</li>
+<p style="font-size:18px;">位置表示MOD禁止</p><li>Minimap</li>
+<p style="font-size:18px;">動作改変MOD禁止</p><li>Reach</li><li>Fly</li>
+<p style="font-size:18px;">自動化MOD禁止</p><li>Auto click</li><li>Aim Assist</li></ul>`
+},
+
+zhCN:{back:"← 返回主页",title:"服务器规则",notice:"<p>使用违规MOD将受到处罚。</p>",chatTitle:"聊天规则",chatRules:"<ul><li>禁止辱骂</li></ul>",gameTitle:"游戏规则",gameRules:"<ul><li>禁止作弊</li></ul>",modTitle:"禁止MOD",modRules:"<ul><li>X-Ray</li></ul>"},
+zhTW:{back:"← 返回首頁",title:"伺服器規則",notice:"<p>使用違規MOD將被處罰。</p>",chatTitle:"聊天規則",chatRules:"<ul><li>禁止辱罵</li></ul>",gameTitle:"遊戲規則",gameRules:"<ul><li>禁止作弊</li></ul>",modTitle:"禁止MOD",modRules:"<ul><li>X-Ray</li></ul>"},
+ko:{back:"← 홈으로",title:"서버 규칙",notice:"<p>금지 MOD 사용 시 처벌됩니다.</p>",chatTitle:"채팅 규칙",chatRules:"<ul><li>욕설 금지</li></ul>",gameTitle:"게임 규칙",gameRules:"<ul><li>치트 금지</li></ul>",modTitle:"금지 MOD",modRules:"<ul><li>X-Ray</li></ul>"}
+};
+
+const select=document.getElementById("langSelect");
+Object.keys(t).forEach(l=>{
+  const o=document.createElement("option");
+  o.value=l;
+  o.textContent=l.toUpperCase();
+  select.appendChild(o);
+});
+
+function setLang(l){
+  back.textContent=t[l].back;
+  title.textContent=t[l].title;
+  notice.innerHTML=t[l].notice;
+  chatTitle.textContent=t[l].chatTitle;
+  chatRules.innerHTML=t[l].chatRules;
+  gameTitle.textContent=t[l].gameTitle;
+  gameRules.innerHTML=t[l].gameRules;
+  modTitle.textContent=t[l].modTitle;
+  modRules.innerHTML=t[l].modRules;
+  localStorage.lang=l;
+}
+
+setLang(localStorage.lang||"en");
+
+document.querySelectorAll('.rule-title').forEach(t=>{
+  t.addEventListener('click',()=>t.parentElement.classList.toggle('active'));
+});
+</script>
 
 </body>
 </html>
