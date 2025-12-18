@@ -5,13 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jeous Store</title>
 
-<!-- Minecraft風フォント（使ってなければ削除OK） -->
 <style>
-@font-face {
-  font-family: 'Minecraft';
-  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -19,194 +13,210 @@
 }
 
 body {
-  font-family: 'Minecraft', system-ui, sans-serif;
-  background-color: #0b0b0b;
+  font-family: system-ui, sans-serif;
   color: #fff;
 }
 
-/* ===== HERO / STORE BACKGROUND ===== */
-.store-hero {
+/* ===== BACKGROUND ===== */
+.hero {
   min-height: 100vh;
-  padding: 80px 40px;
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.35),
-      rgba(0,0,0,0.55)
-    ),
-    url("./images/store-bg.png") center / cover no-repeat;
+  background: url("./images/store-bg.png") center / cover no-repeat;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ===== CONTAINER ===== */
-.store-container {
-  width: 100%;
-  max-width: 1200px;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  border-radius: 20px;
-  padding: 50px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
 }
 
-/* ===== TITLE ===== */
-.store-title {
+/* ===== TOP BAR ===== */
+.top-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.top-btn {
+  background: rgba(0,0,0,0.55);
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.top-btn:hover {
+  background: rgba(0,0,0,0.75);
+}
+
+/* ===== USER AREA ===== */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-area img {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  padding: 60px 40px;
+}
+
+h1 {
   font-size: 48px;
   margin-bottom: 10px;
 }
 
-.store-title span {
+h1 span {
   color: #f5c76a;
 }
 
-.store-subtitle {
-  font-size: 16px;
+.subtitle {
   opacity: 0.85;
   margin-bottom: 50px;
 }
 
-/* ===== GRID ===== */
-.store-grid {
+/* ===== STORE GRID ===== */
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  gap: 24px;
 }
 
-/* ===== CARD ===== */
-.store-card {
-  background: rgba(0,0,0,0.75);
-  border-radius: 18px;
-  padding: 35px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+.card {
+  background: rgba(0,0,0,0.55);
+  border-radius: 14px;
+  padding: 30px;
+  transition: transform .2s ease, background .2s ease;
 }
 
-.store-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top,
-    rgba(255,255,255,0.08),
-    transparent 60%
-  );
-  pointer-events: none;
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(0,0,0,0.7);
 }
 
-.store-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.8);
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
 }
 
-/* ===== CARD CONTENT ===== */
-.store-card h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
-}
-
-.store-card p {
+.card p {
   font-size: 14px;
-  line-height: 1.6;
   opacity: 0.85;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
-/* ===== BUTTON ===== */
-.store-btn {
+.btn {
   display: inline-block;
-  padding: 12px 28px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #f5c76a, #d9a441);
+  padding: 10px 24px;
+  border-radius: 6px;
+  background: #f5c76a;
   color: #000;
   text-decoration: none;
-  font-size: 14px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  font-weight: bold;
 }
 
-.store-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.8);
+.btn:hover {
+  background: #ffd88a;
 }
 
-/* ===== FOOTER ===== */
-.store-footer {
-  text-align: center;
+footer {
   margin-top: 50px;
   font-size: 12px;
   opacity: 0.6;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-  .store-container {
-    padding: 30px;
-  }
-
-  .store-title {
-    font-size: 36px;
-  }
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<section class="store-hero">
-  <div class="store-container">
+<section class="hero">
 
-    <!-- TITLE -->
-    <h1 class="store-title">Jeous <span>Store</span></h1>
-    <p class="store-subtitle">
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <a href="index.html" class="top-btn">← Back to Home</a>
+
+    <div id="userArea">
+      <a href="#" class="top-btn" onclick="login()">Login</a>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <h1>Jeous <span>Store</span></h1>
+    <div class="subtitle">
       Support the server and get exclusive perks.
-    </p>
+    </div>
 
-    <!-- GRID -->
-    <div class="store-grid">
-
-      <!-- RANKS -->
-      <div class="store-card">
+    <div class="grid">
+      <div class="card">
         <h2>Ranks</h2>
-        <p>
-          Unlock exclusive commands, cosmetics, and special privileges
-          by purchasing server ranks.
-        </p>
-        <a href="ranks.html" class="store-btn">View Ranks</a>
+        <p>Server ranks with exclusive perks and commands.</p>
+        <a href="ranks.html" class="btn">View</a>
       </div>
 
-      <!-- COINS -->
-      <div class="store-card">
+      <div class="card">
         <h2>Coins</h2>
-        <p>
-          Purchase in-game currency to use on upgrades,
-          items, and future content.
-        </p>
-        <a href="coins.html" class="store-btn">Buy Coins</a>
+        <p>Buy in-game currency for upgrades and items.</p>
+        <a href="coins.html" class="btn">Buy</a>
       </div>
 
-      <!-- NICK -->
-      <div class="store-card">
+      <div class="card">
         <h2>Nick</h2>
-        <p>
-          Change your nickname in-game and stand out
-          with a custom identity.
-        </p>
-        <a href="nick.html" class="store-btn">Change Nick</a>
+        <p>Change your in-game nickname.</p>
+        <a href="nick.html" class="btn">Change</a>
       </div>
-
     </div>
 
-    <!-- FOOTER -->
-    <div class="store-footer">
-      © Jeous Network — Payments handled securely by Tebex
-    </div>
+    <footer>
+      © Jeous Network · Payments handled by Tebex 
+    </footer>
 
   </div>
 </section>
+
+<script>
+function login() {
+  const name = prompt("Enter your Minecraft username");
+  if (!name) return;
+  localStorage.setItem("mcUser", name);
+  renderUser();
+}
+
+function renderUser() {
+  const user = localStorage.getItem("mcUser");
+  if (!user) return;
+
+  document.getElementById("userArea").innerHTML = `
+    <div class="user-area">
+      <img src="https://mc-heads.net/avatar/${user}/32">
+      <span>${user}</span>
+    </div>
+  `;
+}
+
+renderUser();
+</script>
 
 </body>
 </html>
