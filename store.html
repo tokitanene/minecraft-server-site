@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Store | Jeous</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeous Store</title>
 
+<!-- Minecraft風フォント（使ってなければ削除OK） -->
 <style>
 @font-face {
   font-family: 'Minecraft';
@@ -16,153 +18,195 @@
   box-sizing: border-box;
 }
 
-/* ===== BODY ===== */
 body {
-  font-family: 'Minecraft', sans-serif;
+  font-family: 'Minecraft', system-ui, sans-serif;
+  background-color: #0b0b0b;
+  color: #fff;
+}
+
+/* ===== HERO / STORE BACKGROUND ===== */
+.store-hero {
   min-height: 100vh;
-  color: white;
-
-  background: radial-gradient(circle at top, #2a1d3d, #0b0615 70%);
-}
-
-/* ===== HEADER ===== */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 18px 40px;
-  display: flex;
-  gap: 26px;
-  background: rgba(10,5,25,0.65);
-  backdrop-filter: blur(6px);
-  z-index: 10;
-}
-
-header a {
-  color: #e6dcff;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-header a:hover {
-  color: #ffffff;
-}
-
-/* ===== STORE PANEL (背景ここ) ===== */
-.store-panel {
-  width: 95%;
-  max-width: 1500px;
-  margin: 140px auto 80px;
-  padding: 60px 70px 80px;
-  border-radius: 20px;
-
+  padding: 80px 40px;
   background:
     linear-gradient(
-      rgba(0,0,0,0.78),
-      rgba(0,0,0,0.88)
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.55)
     ),
     url("./images/store-bg.png") center / cover no-repeat;
-
-  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
-}
-
-/* ===== STORE HEADER ===== */
-.store-header h1 {
-  font-size: 46px;
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-}
-
-.store-header h1 span {
-  color: #f6d36b;
-}
-
-.store-header p {
-  font-size: 17px;
-  color: #d8ccff;
-  margin-bottom: 48px;
-}
-
-/* ===== STORE ITEMS ===== */
-.store-items {
-  display: flex;
-  gap: 36px;
-}
-
-/* ===== STORE CARD ===== */
-.store-card {
-  width: 200px;
-  height: 120px;
-
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
-  background: rgba(0,0,0,0.65);
-  border-radius: 16px;
-  font-size: 20px;
-  cursor: pointer;
+/* ===== CONTAINER ===== */
+.store-container {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
 
-  transition: all 0.25s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+/* ===== TITLE ===== */
+.store-title {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.store-title span {
+  color: #f5c76a;
+}
+
+.store-subtitle {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 50px;
+}
+
+/* ===== GRID ===== */
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.store-card {
+  background: rgba(0,0,0,0.75);
+  border-radius: 18px;
+  padding: 35px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.store-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+  pointer-events: none;
 }
 
 .store-card:hover {
-  background: rgba(35,20,70,0.9);
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.8);
+}
+
+/* ===== CARD CONTENT ===== */
+.store-card h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.store-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* ===== BUTTON ===== */
+.store-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f5c76a, #d9a441);
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+.store-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.8);
 }
 
 /* ===== FOOTER ===== */
-.footer {
+.store-footer {
   text-align: center;
-  font-size: 13px;
-  color: #cfc6ff;
-  margin-bottom: 40px;
-  opacity: 0.85;
+  margin-top: 50px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .store-container {
+    padding: 30px;
+  }
+
+  .store-title {
+    font-size: 36px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <a href="index.html">Home</a>
-  <a href="rules.html">Rules</a>
-  <a href="patch-notes.html">Patch Notes</a>
-  <a href="staff.html">Staff</a>
-  <a href="games.html">Games</a>
-</header>
+<section class="store-hero">
+  <div class="store-container">
 
-<!-- ===== STORE PANEL ===== -->
-<div class="store-panel">
+    <!-- TITLE -->
+    <h1 class="store-title">Jeous <span>Store</span></h1>
+    <p class="store-subtitle">
+      Support the server and get exclusive perks.
+    </p>
 
-  <div class="store-header">
-    <h1>Jeous <span>Store</span></h1>
-    <p>Support the server and get exclusive perks</p>
+    <!-- GRID -->
+    <div class="store-grid">
+
+      <!-- RANKS -->
+      <div class="store-card">
+        <h2>Ranks</h2>
+        <p>
+          Unlock exclusive commands, cosmetics, and special privileges
+          by purchasing server ranks.
+        </p>
+        <a href="ranks.html" class="store-btn">View Ranks</a>
+      </div>
+
+      <!-- COINS -->
+      <div class="store-card">
+        <h2>Coins</h2>
+        <p>
+          Purchase in-game currency to use on upgrades,
+          items, and future content.
+        </p>
+        <a href="coins.html" class="store-btn">Buy Coins</a>
+      </div>
+
+      <!-- NICK -->
+      <div class="store-card">
+        <h2>Nick</h2>
+        <p>
+          Change your nickname in-game and stand out
+          with a custom identity.
+        </p>
+        <a href="nick.html" class="store-btn">Change Nick</a>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="store-footer">
+      © Jeous Network — Payments handled securely by Tebex
+    </div>
+
   </div>
-
-  <div class="store-items">
-    <div class="store-card" onclick="location.href='store-ranks.html'">
-      Ranks
-    </div>
-
-    <div class="store-card" onclick="location.href='store-coins.html'">
-      Coins
-    </div>
-
-    <div class="store-card" onclick="location.href='store-nick.html'">
-      Nick
-    </div>
-  </div>
-
-</div>
-
-<!-- ===== FOOTER ===== -->
-<div class="footer">
-  © Jeous Network — Payments handled securely via Tebex
-</div>
+</section>
 
 </body>
 </html>
