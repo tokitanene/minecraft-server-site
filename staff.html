@@ -38,7 +38,7 @@ h1 {
   margin: 0 auto 60px;
 }
 
-/* ===== ここだけ色を分ける ===== */
+/* ===== タイトル & 左の棒 ===== */
 .group-title {
   font-size: 28px;
   margin-bottom: 20px;
@@ -68,7 +68,7 @@ h1 {
   color: #eaffff;
 }
 
-.member img.skin {
+.skin {
   width: 64px;
   height: 64px;
   image-rendering: pixelated;
@@ -96,20 +96,21 @@ h1 {
   transform: scale(1.1);
 }
 
-/* ===== Discord ホバー表示 ===== */
+/* ===== Discord ツールチップ ===== */
 .discord {
   position: relative;
+  display: inline-block;
 }
 
 .discord::after {
   content: attr(data-name);
   position: absolute;
-  bottom: 26px;
+  bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
   background: #000;
   color: #fff;
-  padding: 3px 6px;
+  padding: 4px 6px;
   font-size: 10px;
   white-space: nowrap;
   border-radius: 4px;
@@ -140,8 +141,11 @@ h1 {
   <div class="name">tokita_nene</div>
   <img class="skin" src="https://mc-heads.net/avatar/tokita_nene/64">
   <div class="social">
-    <a href="https://www.youtube.com/@podm_desu"><img src="images/youtube_icon.png"></a>
-    <img class="discord" data-name="takesi_jp" src="images/discord_icon.png">
+    <a href="#"><img src="images/youtube_icon.png"></a>
+    <a href="#"><img src="images/x_icon.png"></a>
+    <span class="discord" data-name="tokita_nene">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -149,9 +153,11 @@ h1 {
   <div class="name">_k2t_</div>
   <img class="skin" src="https://mc-heads.net/avatar/_k2t_/64">
   <div class="social">
-    <a href="https://www.youtube.com/@kazut0_6302"><img src="images/youtube_icon.png"></a>
-    <a href="https://x.com/kazut0_6302JP"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="kazut0_630jp" src="images/discord_icon.png">
+    <a href="#"><img src="images/youtube_icon.png"></a>
+    <a href="#"><img src="images/x_icon.png"></a>
+    <span class="discord" data-name="_k2t_">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -169,7 +175,9 @@ h1 {
   <div class="social">
     <a href="#"><img src="images/youtube_icon.png"></a>
     <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="D_daidaidai7" src="images/discord_icon.png">
+    <span class="discord" data-name="D_daidaidai7">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -179,7 +187,9 @@ h1 {
   <div class="social">
     <a href="#"><img src="images/youtube_icon.png"></a>
     <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="HoneyPie_ti" src="images/discord_icon.png">
+    <span class="discord" data-name="HoneyPie_ti">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -187,9 +197,11 @@ h1 {
   <div class="name">mikofi</div>
   <img class="skin" src="https://mc-heads.net/avatar/mikofi/64">
   <div class="social">
-    <a href="#"><img src="images/youtube_icon.png"></a>
+    <a href="#https://www.youtube.com/@mikofis"><img src="images/youtube_icon.png"></a>
     <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="mikofi" src="images/discord_icon.png">
+    <span class="discord" data-name="mikofi">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -199,7 +211,9 @@ h1 {
   <div class="social">
     <a href="#"><img src="images/youtube_icon.png"></a>
     <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="so4_jk" src="images/discord_icon.png">
+    <span class="discord" data-name="so4_jk">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -207,9 +221,10 @@ h1 {
   <div class="name">Nanaiiden0</div>
   <img class="skin" src="https://mc-heads.net/avatar/Nanaiiden0/64">
   <div class="social">
-    <a href="#"><img src="images/youtube_icon.png"></a>
-    <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="Nanaiiden0" src="images/discord_icon.png">
+    <a href="#https://www.youtube.com/channel/UCeHvm8mU6EBB42fZPsfHZUA"><img src="images/youtube_icon.png"></a>
+    <span class="discord" data-name="@gongqing0479">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
@@ -225,9 +240,10 @@ h1 {
   <div class="name">123aaaddd</div>
   <img class="skin" src="https://mc-heads.net/avatar/123aaaddd/64">
   <div class="social">
-    <a href="#"><img src="images/youtube_icon.png"></a>
-    <a href="#"><img src="images/x_icon.png"></a>
-    <img class="discord" data-name="123aaaddd" src="images/discord_icon.png">
+    <a href="#https://www.youtube.com/channel/UCdu3TAkdXmjQOMAQiIXNpIA"><img src="images/youtube_icon.png"></a>
+    <span class="discord" data-name="123aaaddd">
+      <img src="images/discord_icon.png">
+    </span>
   </div>
 </div>
 
