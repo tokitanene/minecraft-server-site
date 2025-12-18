@@ -16,199 +16,138 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
+  height: 100%;
   font-family: 'Minecraft', sans-serif;
-  color: white;
-  min-height: 100vh;
-  background: url('./images/store-bg.png') center / cover no-repeat fixed;
 }
 
-/* ===== 背景を少し落ち着かせるグレーオーバーレイ ===== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(120,120,120,0.18);
-  z-index: -1;
+/* ===== PAGE BACKGROUND ===== */
+body {
+  background: url("./images/store-bg.png") center / cover no-repeat fixed;
+  position: relative;
+  color: white;
 }
+
+/* グレーの薄いフィルター（黒じゃない） */
+
 
 /* ===== TOP BAR ===== */
 .topbar {
   position: fixed;
   top: 20px;
-  left: 20px;
-  right: 20px;
+  left: 40px;
+  right: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  z-index: 5;
 }
 
-.topbar a {
-  color: #ffffff;
+.topbar a, .login-btn {
+  color: #e6dcff;
   text-decoration: none;
-  font-size: 14px;
-  padding: 10px 16px;
-  background: rgba(0,0,0,0.45);
-  border-radius: 10px;
-  backdrop-filter: blur(6px);
-}
-
-.topbar a:hover {
-  background: rgba(0,0,0,0.65);
-}
-
-/* ===== USER AREA ===== */
-.user-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(0,0,0,0.45);
   padding: 8px 14px;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-}
-
-.user-box img {
-  width: 32px;
-  height: 32px;
-  image-rendering: pixelated;
+  border: 1px solid #b18cff;
+  background: rgba(0,0,0,0.25);
   border-radius: 6px;
+  cursor: pointer;
 }
 
-/* ===== MAIN ===== */
-.main {
-  min-height: 100vh;
+.topbar a:hover,
+.login-btn:hover {
+  background: rgba(177,140,255,0.35);
+}
+
+/* ===== CONTENT ===== */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
 }
 
-.store-wrapper {
-  width: 90%;
-  max-width: 1100px;
+.store-box {
+  width: 1100px;
   padding: 50px;
-  border-radius: 24px;
+  border-radius: 16px;
+
+  /* カード全体もほんのり暗く */
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(6px);
 }
 
-/* ===== TITLE ===== */
 .store-title {
-  font-size: 42px;
-  margin-bottom: 8px;
-}
-
-.store-title span {
-  color: #ffd86b;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .store-sub {
-  color: #e0e0e0;
+  color: #d9caff;
   margin-bottom: 40px;
-  font-size: 16px;
 }
 
-/* ===== CATEGORY GRID ===== */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 26px;
+/* ===== ITEMS ===== */
+.items {
+  display: flex;
+  gap: 40px;
 }
 
-/* ===== CATEGORY CARD ===== */
-.category {
-  position: relative;
-  height: 160px;
-  border-radius: 20px;
+.item {
+  flex: 1;
+  height: 180px;
+  border-radius: 14px;
+  cursor: pointer;
+
+  /* ★ここが重要：背景ぼかし＋暗さ */
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  cursor: pointer;
-  overflow: hidden;
+  font-size: 24px;
+
+  transition: transform 0.2s, background 0.2s;
 }
 
-/* ぼかし＋少し黒く */
-.category::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(12px);
+.item:hover {
+  transform: translateY(-6px);
+  background: rgba(0,0,0,0.6);
 }
 
-.category span {
-  position: relative;
-  z-index: 1;
-}
-
-.category:hover::before {
-  background: rgba(0,0,0,0.65);
-}
-
-/* ===== FOOTER SPACE ===== */
-.spacer {
-  height: 60px;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .items {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== TOP BAR ===== -->
+<!-- TOP BAR -->
 <div class="topbar">
   <a href="index.html">← Back to Home</a>
-
-  <!-- ログイン前 -->
-  <a href="#" id="loginBtn">Login</a>
-
-  <!-- ログイン後（JSで切替） -->
-  <div class="user-box" id="userBox" style="display:none;">
-    <img id="userSkin" src="">
-    <span id="userName"></span>
-  </div>
+  <div class="login-btn">Login</div>
 </div>
 
-<!-- ===== MAIN ===== -->
-<div class="main">
-  <div class="store-wrapper">
-
-    <div class="store-title">Jeous <span>Store</span></div>
+<!-- CONTENT -->
+<div class="wrapper">
+  <div class="store-box">
+    <div class="store-title">Jeous Store</div>
     <div class="store-sub">Support the server and get exclusive perks</div>
 
-    <div class="categories">
-      <div class="category" onclick="location.href='ranks.html'">
-        <span>Ranks</span>
-      </div>
-
-      <div class="category" onclick="location.href='coins.html'">
-        <span>Coins</span>
-      </div>
-
-      <div class="category" onclick="location.href='nick.html'">
-        <span>Nick</span>
-      </div>
+    <div class="items">
+      <div class="item" onclick="location.href='ranks.html'">Ranks</div>
+      <div class="item" onclick="location.href='coins.html'">Coins</div>
+      <div class="item" onclick="location.href='nick.html'">Nick</div>
     </div>
-
-    <div class="spacer"></div>
-
   </div>
 </div>
-
-<script>
-/*
-  ===== 仮ログイン処理（後で Tebex / OAuth に差し替え可）
-*/
-const loggedIn = false; // true にするとログイン状態になる
-
-if (loggedIn) {
-  document.getElementById("loginBtn").style.display = "none";
-  document.getElementById("userBox").style.display = "flex";
-  document.getElementById("userName").textContent = "tokita_nene";
-  document.getElementById("userSkin").src =
-    "https://mc-heads.net/avatar/tokita_nene/64";
-}
-</script>
 
 </body>
 </html>
