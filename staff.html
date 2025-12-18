@@ -38,24 +38,21 @@ h1 {
   margin: 0 auto 60px;
 }
 
-/* ===== GROUP TITLES ===== */
 .group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 28px;
   margin-bottom: 20px;
   padding-left: 12px;
-  border-left: 4px solid;
 }
 
-.group-title.leader {
-  border-color: #9D1F22;
-}
+.group-title.leader { border-left: 4px solid #9D1F22; }
+.group-title.admin  { border-left: 4px solid #CE2A2D; }
+.group-title.mod    { border-left: 4px solid #059C42; }
 
-.group-title.admin {
-  border-color: #CE2A2D;
-}
-
-.group-title.mod {
-  border-color: #059C42;
+.group-title img {
+  height: 32px;
 }
 
 .members {
@@ -77,14 +74,14 @@ h1 {
   color: #eaffff;
 }
 
-.member img.skin {
+.skin {
   width: 64px;
   height: 64px;
   image-rendering: pixelated;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-/* ===== SNS ICONS ===== */
+/* ===== SNS ===== */
 .social {
   display: flex;
   justify-content: center;
@@ -95,8 +92,9 @@ h1 {
 .social img {
   width: 20px;
   height: 20px;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .social img:hover {
@@ -104,27 +102,25 @@ h1 {
   transform: scale(1.1);
 }
 
-/* ===== Discord Tooltip ===== */
+/* Discord hover name */
 .discord {
   position: relative;
-  cursor: default;
 }
 
 .discord::after {
   content: attr(data-name);
   position: absolute;
-  bottom: 140%;
+  bottom: 26px;
   left: 50%;
   transform: translateX(-50%);
-  background: #5865F2;
-  color: white;
-  font-size: 11px;
-  padding: 6px 8px;
-  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  padding: 3px 6px;
+  font-size: 10px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: 0.2s;
+  border-radius: 4px;
 }
 
 .discord:hover::after {
@@ -141,9 +137,12 @@ h1 {
 
 <h1>Staff</h1>
 
-<!-- Leader -->
+<!-- ===== Leader ===== -->
 <div class="group">
-  <div class="group-title leader">Leader</div>
+  <div class="group-title leader">
+    <img src="images/rank_leader.png">
+    Leader
+  </div>
   <div class="members">
 
     <div class="member">
@@ -152,9 +151,7 @@ h1 {
       <div class="social">
         <a href="#"><img src="images/youtube_icon.png"></a>
         <a href="#"><img src="images/x_icon.png"></a>
-        <div class="discord" data-name="Discord: tokita_nene">
-          <img src="images/discord_icon.png">
-        </div>
+        <img class="discord" data-name="tokita_nene" src="images/discord_icon.png">
       </div>
     </div>
 
@@ -164,50 +161,75 @@ h1 {
       <div class="social">
         <a href="#"><img src="images/youtube_icon.png"></a>
         <a href="#"><img src="images/x_icon.png"></a>
-        <div class="discord" data-name="Discord: _k2t_">
-          <img src="images/discord_icon.png">
-        </div>
+        <img class="discord" data-name="_k2t_" src="images/discord_icon.png">
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- Admin -->
+<!-- ===== Admin ===== -->
 <div class="group">
-  <div class="group-title admin">Admin</div>
+  <div class="group-title admin">
+    <img src="images/rank_admin.png">
+    Admin
+  </div>
   <div class="members">
 
-    <div class="member">
-      <div class="name">D_daidaidai7</div>
+    <div class="member"><div class="name">D_daidaidai7</div>
       <img class="skin" src="https://mc-heads.net/avatar/D_daidaidai7/64">
       <div class="social">
         <a href="#"><img src="images/youtube_icon.png"></a>
         <a href="#"><img src="images/x_icon.png"></a>
-        <div class="discord" data-name="Discord: D_daidaidai7">
-          <img src="images/discord_icon.png">
-        </div>
+        <img class="discord" data-name="D_daidaidai7" src="images/discord_icon.png">
       </div>
     </div>
 
-    <div class="member">
-      <div class="name">HoneyPie_ti</div>
+    <div class="member"><div class="name">HoneyPie_ti</div>
       <img class="skin" src="https://mc-heads.net/avatar/HoneyPie_ti/64">
       <div class="social">
         <a href="#"><img src="images/youtube_icon.png"></a>
         <a href="#"><img src="images/x_icon.png"></a>
-        <div class="discord" data-name="Discord: HoneyPie_ti">
-          <img src="images/discord_icon.png">
-        </div>
+        <img class="discord" data-name="HoneyPie_ti" src="images/discord_icon.png">
+      </div>
+    </div>
+
+    <div class="member"><div class="name">mikofi</div>
+      <img class="skin" src="https://mc-heads.net/avatar/mikofi/64">
+      <div class="social">
+        <a href="#"><img src="images/youtube_icon.png"></a>
+        <a href="#"><img src="images/x_icon.png"></a>
+        <img class="discord" data-name="mikofi" src="images/discord_icon.png">
+      </div>
+    </div>
+
+    <div class="member"><div class="name">so4_jk</div>
+      <img class="skin" src="https://mc-heads.net/avatar/so4_jk/64">
+      <div class="social">
+        <a href="#"><img src="images/youtube_icon.png"></a>
+        <a href="#"><img src="images/x_icon.png"></a>
+        <img class="discord" data-name="so4_jk" src="images/discord_icon.png">
+      </div>
+    </div>
+
+    <div class="member"><div class="name">Nanaiiden0</div>
+      <img class="skin" src="https://mc-heads.net/avatar/Nanaiiden0/64">
+      <div class="social">
+        <a href="#"><img src="images/youtube_icon.png"></a>
+        <a href="#"><img src="images/x_icon.png"></a>
+        <img class="discord" data-name="Nanaiiden0" src="images/discord_icon.png">
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- MOD -->
+<!-- ===== MOD ===== -->
 <div class="group">
-  <div class="group-title mod">MOD</div>
+  <div class="group-title mod">
+    <img src="images/rank_mod.png">
+    MOD
+  </div>
   <div class="members">
 
     <div class="member">
@@ -216,9 +238,7 @@ h1 {
       <div class="social">
         <a href="#"><img src="images/youtube_icon.png"></a>
         <a href="#"><img src="images/x_icon.png"></a>
-        <div class="discord" data-name="Discord: 123aaaddd">
-          <img src="images/discord_icon.png">
-        </div>
+        <img class="discord" data-name="123aaaddd" src="images/discord_icon.png">
       </div>
     </div>
 
