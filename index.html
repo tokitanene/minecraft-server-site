@@ -44,7 +44,7 @@ header a:hover {
   color: #ffffff;
 }
 
-/* ===== LANGUAGE ===== */
+/* ===== LANGUAGE SWITCHER ===== */
 .lang {
   position: absolute;
   top: 20px;
@@ -58,6 +58,7 @@ header a:hover {
   border: 1px solid #b18cff;
   padding: 6px 10px;
   font-family: 'Minecraft';
+  cursor: pointer;
 }
 
 /* ===== CENTER ===== */
@@ -125,11 +126,13 @@ h1 {
 }
 
 .modal {
+  position: relative;
   width: 520px;
   max-height: 85vh;
-  background: white;
-  color: black;
+  background: #ffffff;
+  color: #000;
   border-radius: 10px;
+  overflow-y: auto;
   padding: 24px;
 }
 
@@ -147,7 +150,12 @@ h1 {
   border: 2px solid #b18cff;
   border-radius: 8px;
   padding: 16px;
-  margin: 20px 0;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 13px;
+  margin-bottom: 6px;
 }
 
 .input-row {
@@ -157,6 +165,7 @@ h1 {
 
 .input {
   flex: 1;
+  border: 1px solid #ccc;
   padding: 8px;
   font-family: 'Minecraft';
 }
@@ -170,6 +179,23 @@ h1 {
   font-family: 'Minecraft';
 }
 
+.step {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.step-num {
+  background: #9b6cff;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 14px;
+}
+
 /* ===== TOAST ===== */
 .toast {
   position: fixed;
@@ -180,6 +206,7 @@ h1 {
   padding: 12px 18px;
   border-radius: 6px;
   display: none;
+  z-index: 200;
 }
 </style>
 </head>
@@ -196,14 +223,14 @@ h1 {
 </header>
 
 <div class="lang">
-  <select id="langSelect"></select>
+  <select id="langSelect" onchange="setLang(this.value)"></select>
 </div>
 
 <div class="center">
   <img src="./images/server-icon.png" class="icon">
   <h1>JEOUS</h1>
   <div class="tagline" id="tagline"></div>
-  <div class="version">1.21.8+</div>
+  <div class="version">1.21.8~</div>
 
   <div class="buttons">
     <button class="btn" id="btnJoin" onclick="openModal()"></button>
@@ -219,11 +246,24 @@ h1 {
     <h2 id="howto"></h2>
 
     <div class="info-box">
-      <div id="serveraddr"></div>
+      <div class="label" id="serveraddr"></div>
       <div class="input-row">
         <input class="input" value="mc.jeous.net" readonly>
         <button class="copy-btn" id="copy" onclick="copyIP()"></button>
       </div>
+
+      <div class="label" style="margin-top:12px;" id="versionlabel"></div>
+      <input class="input" value="1.21.8～" readonly>
+    </div>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div id="step1"></div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div id="step2"></div>
     </div>
   </div>
 </div>
@@ -231,38 +271,46 @@ h1 {
 <div class="toast" id="toast">IP copied</div>
 
 <script>
-const t = {
-  en:{tagline:"The best competitive server in Asia",join:"Join Server",discord:"Join Discord",howto:"How to join",server:"Server Address",copy:"Copy",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games",store:"Store"},
-  ja:{tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",server:"サーバーアドレス",copy:"コピー",rules:"ルール",patch:"パッチノート",staff:"スタッフ",rank:"ランク",games:"ゲーム",store:"ストア"}
+const translations = {
+  en:{flag:"🇺🇸",name:"English",tagline:"The best competitive server in Asia",join:"Join Server",discord:"Join Discord",howto:"How to join Jeous Server",serveraddr:"Server Address",versionlabel:"Version",copy:"copy",step1:"Multiplayer → Add Server",step2:"Enter mc.jeous.net",rules:"Rules",patch:"Patch Notes",staff:"Staff",rank:"Rank",games:"Games",store:"Store"},
+  ja:{flag:"🇯🇵",name:"日本語",tagline:"アジア最高峰の競技サーバー",join:"サーバーに参加",discord:"Discordに参加",howto:"参加方法",serveraddr:"サーバーアドレス",versionlabel:"バージョン",copy:"コピー",step1:"マルチプレイ → サーバー追加",step2:"mc.jeous.net を入力",rules:"ルール",patch:"パッチノート",staff:"スタッフ",rank:"ランク",games:"ゲーム",store:"ストア"},
+  zhCN:{flag:"🇨🇳",name:"简体中文",tagline:"亚洲最强竞技服务器",join:"加入服务器",discord:"加入 Discord",howto:"加入方式",serveraddr:"服务器地址",versionlabel:"版本",copy:"复制",step1:"多人游戏 → 添加服务器",step2:"输入 mc.jeous.net",rules:"规则",patch:"更新日志",staff:"管理团队",rank:"等级",games:"游戏",store:"商店"},
+  zhTW:{flag:"🇹🇼",name:"繁體中文",tagline:"亞洲頂尖競技伺服器",join:"加入伺服器",discord:"加入 Discord",howto:"加入方式",serveraddr:"伺服器位址",versionlabel:"版本",copy:"複製",step1:"多人遊戲 → 新增伺服器",step2:"輸入 mc.jeous.net",rules:"規則",patch:"更新紀錄",staff:"工作人員",rank:"階級",games:"遊戲",store:"商店"},
+  ko:{flag:"🇰🇷",name:"한국어",tagline:"아시아 최고의 경쟁 서버",join:"서버 참가",discord:"디스코드 참가",howto:"참여 방법",serveraddr:"서버 주소",versionlabel:"버전",copy:"복사",step1:"멀티플레이 → 서버 추가",step2:"mc.jeous.net 입력",rules:"규칙",patch:"패치 노트",staff:"스태프",rank:"랭크",games:"게임",store:"스토어"}
 };
 
-const langSelect=document.getElementById("langSelect");
-Object.keys(t).forEach(l=>{
+const langSelect = document.getElementById("langSelect");
+
+Object.keys(translations).forEach(l=>{
   const o=document.createElement("option");
-  o.value=l;o.textContent=l.toUpperCase();
+  o.value=l;
+  o.textContent = `${translations[l].flag} ${translations[l].name}`;
   langSelect.appendChild(o);
 });
 
 function setLang(l){
-  tagline.textContent=t[l].tagline;
-  btnJoin.textContent=t[l].join;
-  btnDiscord.textContent=t[l].discord;
-  howto.textContent=t[l].howto;
-  serveraddr.textContent=t[l].server;
-  copy.textContent=t[l].copy;
-  navRules.textContent=t[l].rules;
-  navPatch.textContent=t[l].patch;
-  navStaff.textContent=t[l].staff;
-  navRank.textContent=t[l].rank;
-  navGames.textContent=t[l].games;
-  navStore.textContent=t[l].store;
+  const t=translations[l];
+  tagline.textContent=t.tagline;
+  btnJoin.textContent=t.join;
+  btnDiscord.textContent=t.discord;
+  howto.textContent=t.howto;
+  serveraddr.textContent=t.serveraddr;
+  versionlabel.textContent=t.versionlabel;
+  copy.textContent=t.copy;
+  step1.textContent=t.step1;
+  step2.textContent=t.step2;
+  navRules.textContent=t.rules;
+  navPatch.textContent=t.patch;
+  navStaff.textContent=t.staff;
+  navRank.textContent=t.rank;
+  navGames.textContent=t.games;
+  navStore.textContent=t.store;
   localStorage.lang=l;
 }
 
-langSelect.value=localStorage.lang||"en";
-setLang(langSelect.value);
-
-langSelect.onchange=()=>setLang(langSelect.value);
+const defaultLang=localStorage.lang||"en";
+langSelect.value=defaultLang;
+setLang(defaultLang);
 
 function openModal(){modal.style.display="flex";}
 function closeModal(){modal.style.display="none";}
