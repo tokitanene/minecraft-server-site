@@ -46,6 +46,7 @@ header {
 
 .actions {
   display: flex;
+  align-items: center;
   gap: 14px;
 }
 
@@ -57,6 +58,20 @@ header {
   padding: 10px 16px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* ===== USER ===== */
+.user {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  image-rendering: pixelated;
 }
 
 /* ===== MAIN ===== */
@@ -127,7 +142,7 @@ main {
   filter: brightness(0.6);
 }
 
-/* 光沢 */
+/* ===== 光沢 ===== */
 .card::before {
   content: "";
   position: absolute;
@@ -152,15 +167,18 @@ main {
   animation: shine 0.9s ease;
 }
 
-
 @keyframes shine {
-  from { left: -70%; }
-  to   { left: 140%; }
+  from { left: -120%; }
+  to   { left: 160%; }
 }
 
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.card:hover::after {
+  filter: brightness(0.75);
 }
 
 /* ===== CARD TEXT ===== */
@@ -187,7 +205,12 @@ main {
   <div class="nav">
     <a href="index.html">← Back to Home</a>
   </div>
+
   <div class="actions">
+    <div class="user" id="userBox">
+      <img id="skinFace">
+      <span id="username"></span>
+    </div>
     <button id="loginBtn">Login</button>
     <button id="cartBtn">🛒 Cart</button>
   </div>
@@ -213,6 +236,34 @@ main {
     </div>
   </div>
 </main>
+
+<!-- ===== TEBEX ===== -->
+<script src="https://checkout.tebex.io/tebex.js"></script>
+<script>
+Tebex.init({
+  store: "YOUR_STORE_IDENTIFIER"
+});
+
+// ===== LOGIN / USER INFO =====
+const PUBLIC_TOKEN = "YOUR_PUBLIC_TOKEN";
+
+fetch("https://plugin.tebex.io/user", {
+  headers: {
+    "X-Tebex-Token": PUBLIC_TOKEN
+  }
+})
+.then(res => res.json())
+.then(user => {
+  if (!user || !user.username) return;
+
+  document.getElementById("loginBtn").style.display = "none";
+  document.getElementById("userBox").style.display = "flex";
+
+  document.getElementById("username").textContent = user.username;
+  document.getElementById("skinFace").src =
+    `https://mc-heads.net/avatar/${user.username}/32`;
+});
+</script>
 
 </body>
 </html>
