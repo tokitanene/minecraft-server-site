@@ -131,18 +131,21 @@ main {
   cursor: pointer;
   transform: translateY(0);
   transition: transform 0.25s, box-shadow 0.25s;
+  z-index: 1;
 }
 
+/* 背景画像 */
 .card::after {
   content: "";
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.6);
+  filter: brightness(0.8); /* ← 明るく */
+  z-index: 1;
 }
 
-/* ===== 光沢 ===== */
+/* 光沢レイヤー */
 .card::before {
   content: "";
   position: absolute;
@@ -153,13 +156,14 @@ main {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.55),
-    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.65),
+    rgba(255,255,255,0.3),
     transparent
   );
   transform: rotate(25deg);
   pointer-events: none;
   opacity: 0;
+  z-index: 3;
 }
 
 .card:hover::before {
@@ -178,7 +182,7 @@ main {
 }
 
 .card:hover::after {
-  filter: brightness(0.75);
+  filter: brightness(0.95);
 }
 
 /* ===== CARD TEXT ===== */
@@ -187,7 +191,7 @@ main {
   bottom: 12px;
   left: 14px;
   font-size: 18px;
-  z-index: 2;
+  z-index: 4;
   text-shadow: 0 3px 6px #000;
 }
 
@@ -244,7 +248,7 @@ Tebex.init({
   store: "YOUR_STORE_IDENTIFIER"
 });
 
-// ===== LOGIN / USER INFO =====
+/* ===== LOGIN / USER INFO ===== */
 const PUBLIC_TOKEN = "YOUR_PUBLIC_TOKEN";
 
 fetch("https://plugin.tebex.io/user", {
