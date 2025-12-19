@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Jeous Store</title>
+<title>Store</title>
 
 <style>
 @font-face {
-  font-family: 'Minecraft';
-  src: url('./fonts/Minecraft-Regular.otf') format('opentype');
+  font-family: "Minecraft";
+  src: url("./fonts/Minecraft.ttf");
 }
 
 * {
@@ -16,138 +16,200 @@
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  font-family: 'Minecraft', sans-serif;
-}
-
-/* ===== PAGE BACKGROUND ===== */
 body {
-  background: url("./images/store-bg.png") center / cover no-repeat fixed;
-  position: relative;
-  color: white;
+  font-family: "Minecraft", sans-serif;
+  min-height: 100vh;
+  background: #0C0F14;
+  color: #fff;
 }
 
-/* グレーの薄いフィルター（黒じゃない） */
-
-
-/* ===== TOP BAR ===== */
-.topbar {
-  position: fixed;
-  top: 20px;
-  left: 40px;
-  right: 40px;
+/* ===== HEADER ===== */
+header {
+  height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  z-index: 5;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(25, 28, 35, 0.9);
 }
 
-.topbar a, .login-btn {
-  color: #e6dcff;
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav a {
+  color: #fff;
   text-decoration: none;
-  padding: 8px 14px;
-  border: 1px solid #b18cff;
-  background: rgba(0,0,0,0.25);
-  border-radius: 6px;
+  opacity: 0.85;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.actions button {
+  font-family: inherit;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.topbar a:hover,
-.login-btn:hover {
-  background: rgba(177,140,255,0.35);
-}
-
-/* ===== CONTENT ===== */
-.wrapper {
-  position: relative;
-  z-index: 1;
-  height: 100%;
+/* ===== MAIN ===== */
+main {
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 60px 20px;
 }
 
-.store-box {
+/* ===== HERO CARD ===== */
+.hero {
   width: 1100px;
-  padding: 50px;
-  border-radius: 16px;
-
-  /* カード全体もほんのり暗く */
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.25)
+    ),
+    url("./images/bg-main.jpg") center / cover no-repeat;
 }
 
-.store-title {
-  font-size: 40px;
+/* ===== HERO TEXT ===== */
+.hero-content {
+  padding: 60px;
+}
+
+.hero h1 {
+  font-size: 56px;
   margin-bottom: 10px;
 }
 
-.store-sub {
-  color: #d9caff;
-  margin-bottom: 40px;
+.hero h1 span {
+  color: #ffe17a;
 }
 
-/* ===== ITEMS ===== */
-.items {
+.hero p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ===== CATEGORY CARDS ===== */
+.categories {
   display: flex;
-  gap: 40px;
+  gap: 24px;
+  padding: 30px 40px 40px;
 }
 
-.item {
+.card {
   flex: 1;
-  height: 180px;
+  height: 120px;
   border-radius: 14px;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
-
-  /* ★ここが重要：背景ぼかし＋暗さ */
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-
-  transition: transform 0.2s, background 0.2s;
+  transform: translateY(0);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
-.item:hover {
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6);
+}
+
+/* 光沢 */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -70%;
+  width: 40%;
+  height: 220%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.card:hover::before {
+  animation: shine 0.8s ease;
+}
+
+@keyframes shine {
+  from { left: -70%; }
+  to   { left: 140%; }
+}
+
+.card:hover {
   transform: translateY(-6px);
-  background: rgba(0,0,0,0.6);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .items {
-    flex-direction: column;
-  }
+/* ===== CARD TEXT ===== */
+.card span {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  font-size: 18px;
+  z-index: 2;
+  text-shadow: 0 3px 6px #000;
 }
+
+/* ===== INDIVIDUAL BACKGROUNDS ===== */
+.card.ranks::after { background-image: url("./images/ranks.jpg"); }
+.card.coins::after { background-image: url("./images/coins.jpg"); }
+.card.nick::after  { background-image: url("./images/nick.jpg"); }
+
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <a href="index.html">← Back to Home</a>
-  <div class="login-btn">Login</div>
-</div>
+<header>
+  <div class="nav">
+    <a href="#">Home</a>
+    <a href="#">VIP</a>
+    <a href="#">Gems</a>
+    <a href="#">Bundles</a>
+  </div>
+  <div class="actions">
+    <button>Log in</button>
+    <button>🛒 Cart Empty</button>
+  </div>
+</header>
 
-<!-- CONTENT -->
-<div class="wrapper">
-  <div class="store-box">
-    <div class="store-title">Jeous Store</div>
-    <div class="store-sub">Support the server and get exclusive perks</div>
+<main>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Hoplite <span>Store</span></h1>
+      <p>Support the server and get cool perks & items!</p>
+    </div>
 
-    <div class="items">
-      <div class="item" onclick="location.href='ranks.html'">Ranks</div>
-      <div class="item" onclick="location.href='coins.html'">Coins</div>
-      <div class="item" onclick="location.href='nick.html'">Nick</div>
+    <div class="categories">
+      <div class="card ranks"><span>Ranks</span></div>
+      <div class="card coins"><span>Coins</span></div>
+      <div class="card nick"><span>Nick</span></div>
     </div>
   </div>
-</div>
+</main>
 
 </body>
 </html>
