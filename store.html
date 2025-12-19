@@ -2,7 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Store</title>
+<title>Ranks | Store</title>
+
+<!-- Tebex -->
+<script src="https://checkout.tebex.io/tebex.js"></script>
 
 <style>
 @font-face {
@@ -17,199 +20,171 @@
 }
 
 body {
-  font-family: "Minecraft", sans-serif;
-  min-height: 100vh;
   background: #0C0F14;
+  font-family: "Minecraft", sans-serif;
   color: #fff;
+  min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  background: rgba(25, 28, 35, 0.9);
+  background: rgba(20,23,30,0.9);
 }
 
-.nav {
-  display: flex;
-  gap: 30px;
-}
-
-.nav a {
+.left a {
   color: #fff;
   text-decoration: none;
   opacity: 0.85;
 }
+.left a:hover { opacity: 1; }
 
-.nav a:hover {
-  opacity: 1;
-}
-
-.actions {
+.right {
   display: flex;
-  gap: 14px;
+  gap: 15px;
 }
 
-.actions button {
-  font-family: inherit;
-  background: rgba(0,0,0,0.35);
-  color: #fff;
+.btn {
+  background: #1c2130;
   border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
   cursor: pointer;
+  font-family: "Minecraft";
 }
+.btn:hover { background: #2a3050; }
 
-/* ===== MAIN ===== */
+/* MAIN */
 main {
-  display: flex;
-  justify-content: center;
-  padding: 60px 20px;
-}
-
-/* ===== HERO CARD ===== */
-.hero {
-  width: 1100px;
-  border-radius: 22px;
-  overflow: hidden;
-  position: relative;
-  background:
-    linear-gradient(
-      to right,
-      rgba(0,0,0,0.65),
-      rgba(0,0,0,0.25)
-    ),
-    url("./images/bg-main.jpg") center / cover no-repeat;
-}
-
-/* ===== HERO TEXT ===== */
-.hero-content {
   padding: 60px;
 }
 
-.hero h1 {
-  font-size: 56px;
-  margin-bottom: 10px;
+h1 {
+  font-size: 42px;
+  margin-bottom: 30px;
 }
 
-.hero h1 span {
-  color: #ffe17a;
-}
-
-.hero p {
-  font-size: 18px;
-  opacity: 0.9;
-}
-
-/* ===== CATEGORY CARDS ===== */
-.categories {
-  display: flex;
-  gap: 24px;
-  padding: 30px 40px 40px;
-}
-
-.card {
-  flex: 1;
-  height: 120px;
-  border-radius: 14px;
+.section {
   position: relative;
+  border-radius: 20px;
+  padding: 40px;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("./images/ranks.jpg") center / cover;
   overflow: hidden;
+}
+
+/* 商品カード */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+  gap: 30px;
+}
+
+.product {
+  position: relative;
+  background: rgba(20,25,40,0.9);
+  border-radius: 18px;
+  padding: 25px;
   cursor: pointer;
-  transform: translateY(0);
-  transition: transform 0.25s, box-shadow 0.25s;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
 }
 
-.card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.6);
-}
-
-/* 光沢 */
-.card::before {
-  content: "";
-  position: absolute;
-  top: -60%;
-  left: -70%;
-  width: 40%;
-  height: 220%;
+.product::before {
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-60%;
+  width:40%;
+  height:200%;
   background: linear-gradient(
     120deg,
-    transparent,
-    rgba(255,255,255,0.35),
-    transparent
+    rgba(255,255,255,0),
+    rgba(255,255,255,.2),
+    rgba(255,255,255,0)
   );
   transform: rotate(25deg);
-  pointer-events: none;
 }
 
-.card:hover::before {
-  animation: shine 0.8s ease;
+.product:hover::before {
+  animation: shine .8s ease-in-out;
 }
 
 @keyframes shine {
-  from { left: -70%; }
-  to   { left: 140%; }
+  from { left:-60%; }
+  to { left:140%; }
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+.product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0,0,0,.6);
 }
 
-/* ===== CARD TEXT ===== */
-.card span {
-  position: absolute;
-  bottom: 12px;
-  left: 14px;
+.product h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.product p {
+  opacity: .8;
+  margin-bottom: 15px;
+}
+
+.price {
   font-size: 18px;
-  z-index: 2;
-  text-shadow: 0 3px 6px #000;
+  color: #ffd966;
 }
-
-/* ===== INDIVIDUAL BACKGROUNDS ===== */
-.card.ranks::after { background-image: url("./images/ranks.jpg"); }
-.card.coins::after { background-image: url("./images/coins.jpg"); }
-.card.nick::after  { background-image: url("./images/nick.jpg"); }
-
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav">
-    <a href="#">Home</a>
-    <a href="#">VIP</a>
-    <a href="#">Gems</a>
-    <a href="#">Bundles</a>
+  <div class="left">
+    <a href="store.html">← Back to Home</a>
   </div>
-  <div class="actions">
-    <button>Log in</button>
-    <button>🛒 Cart Empty</button>
+
+  <div class="right">
+    <button class="btn" onclick="Tebex.checkout.open()">Cart</button>
+    <button class="btn" onclick="Tebex.login()">Log in</button>
   </div>
 </header>
 
 <main>
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Hoplite <span>Store</span></h1>
-      <p>Support the server and get cool perks & items!</p>
-    </div>
+  <h1>Ranks</h1>
 
-    <div class="categories">
-      <div class="card ranks"><span>Ranks</span></div>
-      <div class="card coins"><span>Coins</span></div>
-      <div class="card nick"><span>Nick</span></div>
+  <div class="section">
+    <div class="products">
+
+      <!-- 商品① -->
+      <div class="product" onclick="Tebex.checkout.openPackage(123456)">
+        <h3>VIP</h3>
+        <p>Special permissions & perks</p>
+        <div class="price">¥500</div>
+      </div>
+
+      <!-- 商品② -->
+      <div class="product" onclick="Tebex.checkout.openPackage(234567)">
+        <h3>MVP</h3>
+        <p>More commands & bonuses</p>
+        <div class="price">¥1,000</div>
+      </div>
+
     </div>
   </div>
 </main>
+
+<script>
+Tebex.init({
+  store: "YOUR_STORE_ID"
+});
+</script>
 
 </body>
 </html>
