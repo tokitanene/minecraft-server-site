@@ -10,7 +10,7 @@
 body{
     margin:0;
     font-family:'Montserrat',sans-serif;
-    background:#DAF0FD; /* ← 全体背景 */
+    background:#DAF0FD;
 }
 
 /* ===== HEADER ===== */
@@ -29,6 +29,7 @@ header{
     margin:auto;
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:15px 20px;
 }
 
@@ -83,6 +84,25 @@ header{
     cursor:pointer;
 }
 
+/* ===== POPUP ===== */
+.popup{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:400px;
+    text-align:center;
+}
+
 /* ===== NEWS ===== */
 .news-top{
     max-width:1200px;
@@ -105,6 +125,10 @@ header{
     transform:translateY(-8px);
     box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
+
+/* フェード */
+.fade{opacity:0;transform:translateX(20px);transition:0.4s;}
+.fade.show{opacity:1;transform:translateX(0);}
 
 /* ドット */
 .dots{text-align:center;}
@@ -151,7 +175,6 @@ header{
 footer{
     background:#BDE4FB;
     padding:30px 0;
-    margin-top:40px;
 }
 
 .footer-inner{
@@ -177,9 +200,11 @@ footer{
     <div>JEous</div>
 
     <div class="nav">
-        <a href="/jeous/index.html">HOME</a>
+        <a href="/jeous/event/index.html">EVENT</a>
+        <a href="/jeous/island/index.html">ISLAND</a>
+        <a href="/jeous/forums/index.html">FORUMS</a>
         <a href="/jeous/rules/index.html">RULES</a>
-        <a href="/jeous/contact.html">CONTACT</a>
+        <a href="/jeous/store/index.html">STORE</a>
     </div>
 
     <div class="play-btn" onclick="copyIP()">mc.jeous.net</div>
@@ -193,20 +218,29 @@ footer{
         <div>
             <div class="server-name">JEous Network</div>
             <div class="server-ip">mc.jeous.net</div>
-            <div class="play-now">PLAY NOW</div>
+            <div class="play-now" onclick="openPopup()">PLAY NOW</div>
         </div>
+    </div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>How to Connect</h2>
+        <p>mc.jeous.net を入力</p>
+        <button onclick="closePopup()">OK</button>
     </div>
 </div>
 
 <!-- NEWS -->
 <div class="news-top">
     <div>
-        <h1 id="newsTitle"></h1>
-        <p id="newsText"></p>
+        <h1 id="newsTitle" class="fade show"></h1>
+        <p id="newsText" class="fade show"></p>
         <a id="readMore" href="#">READ MORE →</a>
     </div>
 
-    <div class="news-img" id="newsImg" onclick="goNews()"></div>
+    <div class="news-img fade show" id="newsImg" onclick="goNews()"></div>
 </div>
 
 <div class="dots" id="dots"></div>
@@ -215,31 +249,25 @@ footer{
 
 <div class="news-grid">
     <div class="card" onclick="location.href='news1.html'">
-        <img src="images/image3.jpg">
-        <p>News 1</p>
+        <img src="images/image3.jpg"><p>News 1</p>
     </div>
-
     <div class="card" onclick="location.href='news2.html'">
-        <img src="images/image4.jpg">
-        <p>News 2</p>
+        <img src="images/image4.jpg"><p>News 2</p>
     </div>
-
     <div class="card" onclick="location.href='news3.html'">
-        <img src="images/image5.jpg">
-        <p>News 3</p>
+        <img src="images/image5.jpg"><p>News 3</p>
     </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
 <footer>
-    <div class="footer-inner">
-        <a href="#">Home</a>
-        <a href="#">Rules</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Jobs</a>
-    </div>
+<div class="footer-inner">
+    <a href="#">Home</a>
+    <a href="#">Rules</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Jobs</a>
+</div>
 </footer>
 
 <script>
@@ -247,6 +275,16 @@ function copyIP(){
     navigator.clipboard.writeText("mc.jeous.net");
     alert("コピーしたで！");
 }
+
+function openPopup(){
+    document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+document.addEventListener("keydown",e=>{
+    if(e.key==="Escape") closePopup();
+});
 
 let news=[
     {title:"Battle Box Arena",text:"新モード登場",img:"images/image3.jpg",link:"news1.html"},
@@ -257,10 +295,24 @@ let news=[
 let i=0;
 
 function updateNews(){
-    document.getElementById("newsTitle").innerText=news[i].title;
-    document.getElementById("newsText").innerText=news[i].text;
-    document.getElementById("newsImg").style.backgroundImage=`url(${news[i].img})`;
-    document.getElementById("readMore").href=news[i].link;
+    let t=document.getElementById("newsTitle");
+    let p=document.getElementById("newsText");
+    let img=document.getElementById("newsImg");
+
+    t.classList.remove("show");
+    p.classList.remove("show");
+    img.classList.remove("show");
+
+    setTimeout(()=>{
+        t.innerText=news[i].title;
+        p.innerText=news[i].text;
+        img.style.backgroundImage=`url(${news[i].img})`;
+        document.getElementById("readMore").href=news[i].link;
+
+        t.classList.add("show");
+        p.classList.add("show");
+        img.classList.add("show");
+    },200);
 
     document.querySelectorAll(".dot").forEach((d,idx)=>{
         d.classList.toggle("active", idx===i);
