@@ -2,9 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>MCC風サイト</title>
+<title>Jeous</title>
 
-<!-- アイコン用 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -14,6 +13,13 @@ body {
     background: #f5f6fa;
 }
 
+/* ===== 共通幅（これで中央に収まる） ===== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
 /* ===== 上バー ===== */
 header {
     position: fixed;
@@ -21,11 +27,18 @@ header {
     width: 100%;
     background: white;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 40px;
+    justify-content: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 999;
+}
+
+.header-inner {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
 }
 
 .logo {
@@ -36,7 +49,7 @@ header {
 
 .nav {
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .nav a {
@@ -45,17 +58,11 @@ header {
     font-weight: bold;
 }
 
-/* ここ重要：リンク化 */
-.nav a:hover {
-    color: #a855f7;
-}
-
 .play-btn {
     background: #a855f7;
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
-    font-weight: bold;
     text-decoration: none;
 }
 
@@ -66,15 +73,53 @@ main {
 
 /* ===== ヒーロー ===== */
 .hero {
-    margin: 40px auto;
-    width: 80%;
-    height: 300px;
     border-radius: 15px;
     background: url("https://picsum.photos/1200/400") center/cover;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+}
+
+/* ===== サーバー情報 ===== */
+.server-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: -40px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    width: fit-content;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.server-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.server-name {
+    font-weight: bold;
+}
+
+/* ===== ステータス＆Discord ===== */
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.discord-box {
+    background: #5865F2;
     color: white;
 }
 
@@ -82,34 +127,25 @@ main {
 .social {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
+    gap: 15px;
+    margin: 20px 0;
 }
 
 .social a {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
     color: #333;
-    font-size: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: 0.2s;
-}
-
-.social a:hover {
-    background: #a855f7;
-    color: white;
+    font-size: 18px;
 }
 
 /* ===== NEWS ===== */
 .news {
-    width: 85%;
-    margin: auto;
+    margin-top: 30px;
 }
 
 .news-grid {
@@ -133,40 +169,72 @@ main {
 .card h3 {
     padding: 10px;
 }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 900px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-row {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo">MCC</div>
+    <div class="header-inner">
+        <div class="logo">MCC</div>
 
-    <!-- ここ重要：将来のURL構造 -->
-    <div class="nav">
-        <a href="/jeous/event">EVENT</a>
-        <a href="/jeous/island">ISLAND</a>
-        <a href="/jeous/forums">FORUMS</a>
-        <a href="/jeous/rules">RULES</a>
-        <a href="/jeous/merch">MERCH</a>
-        <a href="/jeous/store">STORE</a>
+        <div class="nav">
+            <a href="/jeous/event">EVENT</a>
+            <a href="/jeous/island">ISLAND</a>
+            <a href="/jeous/forums">FORUMS</a>
+            <a href="/jeous/rules">RULES</a>
+        </div>
+
+        <a class="play-btn">mc.jeous.net</a>
     </div>
-
-    <a class="play-btn" href="#">mc.jeous.net</a>
 </header>
 
-<main>
+<main class="container">
 
-<section class="hero">
-    <h1>ISLAND</h1>
-</section>
+<!-- ヒーロー -->
+<section class="hero"></section>
 
-<!-- SNS（アイコン化） -->
+<!-- サーバー情報（追加） -->
+<div class="server-info">
+    <img src="https://mc-heads.net/avatar/Notch" alt="">
+    <div>
+        <div class="server-name">JEous Network</div>
+        <div>play.mcjeous.net</div>
+    </div>
+</div>
+
+<!-- Server Status + Discord -->
+<div class="info-row">
+    <div class="box">
+        <strong>Server Status</strong>
+        <p>780 Online</p>
+    </div>
+
+    <div class="box discord-box">
+        <strong>Discord</strong>
+        <p>Meet Other Players</p>
+    </div>
+</div>
+
+<!-- SNS -->
 <div class="social">
     <a href="#"><i class="fa-brands fa-discord"></i></a>
     <a href="#"><i class="fa-brands fa-youtube"></i></a>
     <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
 </div>
 
+<!-- NEWS -->
 <section class="news">
     <h2>All Island News</h2>
 
