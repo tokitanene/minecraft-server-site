@@ -423,6 +423,13 @@ news.forEach((_,idx)=>{
 
 updateNews();
 
+
+setInterval(()=>{
+    i=(i+1)%news.length;
+    updateNews();
+},10000);
+</script>
+
 <div class="info-row">
 
     <!-- Server Status -->
@@ -447,12 +454,6 @@ updateNews();
     </div>
 
 </div>
-
-setInterval(()=>{
-    i=(i+1)%news.length;
-    updateNews();
-},10000);
-</script>
 
 </body>
 </html>
