@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>JEous Network</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -17,27 +16,23 @@ body{
 /* ===== HEADER ===== */
 header{
     position:fixed;
-    top:0;
     width:100%;
     background:white;
     box-shadow:0 2px 10px rgba(0,0,0,0.1);
     z-index:999;
 }
-
 .header-inner{
     display:flex;
     justify-content:space-between;
     align-items:center;
     padding:15px 40px;
 }
-
 .nav a{
     margin:0 12px;
     text-decoration:none;
     color:#555;
     font-weight:700;
 }
-
 .play-btn{
     background:#a855f7;
     color:white;
@@ -48,101 +43,104 @@ header{
 
 /* ===== HERO ===== */
 .hero{
-    margin-top:90px;
+    margin-top:80px;
     height:420px;
     background:url("images/image1.jpg") center/cover;
-    position:relative;
     border-radius:20px;
+    position:relative;
 }
-
-/* ===== SERVER ===== */
 .server-overlay{
     position:absolute;
-    bottom:25px;
-    left:25px;
+    bottom:20px;
+    left:20px;
     display:flex;
     gap:15px;
     background:rgba(0,0,0,0.6);
     padding:15px;
     border-radius:12px;
 }
-
 .server-icon{
-    width:65px;
-    border-radius:12px;
+    width:60px;
+    border-radius:10px;
 }
-
-.server-name{color:white;font-size:20px;font-weight:800;}
+.server-name{color:white;font-weight:800;}
 .server-ip{color:#ccc;}
-
 .play-now{
     background:#a855f7;
     color:white;
-    padding:6px 12px;
+    padding:5px 10px;
     border-radius:6px;
-    margin-top:5px;
     cursor:pointer;
+    margin-top:5px;
 }
 
 /* ===== POPUP ===== */
 .popup{
     position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
+    width:100%;
+    height:100%;
     background:rgba(0,0,0,0.6);
     display:none;
     justify-content:center;
     align-items:center;
 }
-
 .popup-content{
     background:white;
     padding:30px;
-    border-radius:15px;
-    width:400px;
-    text-align:center;
-}
-
-.popup button{
-    background:#ffd54f;
-    border:none;
-    padding:10px 20px;
-    border-radius:8px;
+    border-radius:12px;
 }
 
 /* ===== NEWS TOP ===== */
 .news-top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     margin:40px;
 }
-
-.news-main{
-    display:flex;
-    gap:20px;
-    align-items:center;
-}
-
 .news-img{
-    width:400px;
-    height:220px;
+    width:420px;
+    height:230px;
     border-radius:15px;
     background-size:cover;
+    cursor:pointer;
+    transition:0.3s;
 }
+
+/* ★ ホバーで浮く */
+.news-img:hover{
+    transform:translateY(-10px);
+}
+
+/* ===== DOT ===== */
+.dots{text-align:center;}
+.dot{
+    width:10px;height:10px;
+    display:inline-block;
+    margin:5px;
+    background:#ccc;
+    border-radius:50%;
+    cursor:pointer;
+}
+.dot.active{background:#333;}
 
 /* ===== ALL NEWS ===== */
 .news-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:20px;
-    padding:0 40px;
+    padding:40px;
 }
 
 .card{
     background:white;
     border-radius:12px;
     overflow:hidden;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* ★ ホバー浮き */
+.card:hover{
+    transform:translateY(-10px);
 }
 
 .card img{
@@ -150,33 +148,36 @@ header{
     height:160px;
     object-fit:cover;
 }
+
+.card p{
+    padding:10px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <div class="header-inner">
-        <div>MCC</div>
+<div class="header-inner">
+    <div>MCC</div>
 
-        <div class="nav">
-            <a>EVENT</a>
-            <a>ISLAND</a>
-            <a>FORUMS</a>
-            <a>RULES</a>
-            <a>STORE</a>
-        </div>
-
-        <!-- コピー機能 -->
-        <div class="play-btn" onclick="copyIP()">mc.jeous.net</div>
+    <div class="nav">
+        <a href="/jeous/event/index.html">EVENT</a>
+        <a href="/jeous/island/index.html">ISLAND</a>
+        <a href="/jeous/forums/index.html">FORUMS</a>
+        <a href="/jeous/rules/index.html">RULES</a>
+        <a href="/jeous/store/index.html">STORE</a>
     </div>
+
+    <div class="play-btn" onclick="copyIP()">mc.jeous.net</div>
+</div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
     <div class="server-overlay">
         <img src="images/image2.png" class="server-icon">
-
         <div>
             <div class="server-name">JEous Network</div>
             <div class="server-ip">mc.jeous.net</div>
@@ -189,96 +190,103 @@ header{
 <div class="popup" id="popup">
     <div class="popup-content">
         <h2>How to Connect</h2>
-        <p>1. Multiplayer → Add Server</p>
-        <p>2. mc.jeous.net を入力</p>
-        <p>3. Done</p>
-        <button onclick="closePopup()">GOT IT</button>
+        <p>mc.jeous.net を追加</p>
+        <button onclick="closePopup()">OK</button>
     </div>
 </div>
 
-<!-- NEWS TOP（切り替え） -->
+<!-- NEWS -->
 <div class="news-top">
     <div>
-        <h1 id="newsTitle">Battle Box Arena News!</h1>
-        <p id="newsText">最新ニュース</p>
+        <h1 id="newsTitle"></h1>
+        <p id="newsText"></p>
+        <a id="readMore">READ MORE →</a>
     </div>
 
-    <div class="news-img" id="newsImg"></div>
+    <!-- ★ クリックで遷移 -->
+    <div class="news-img" id="newsImg" onclick="goNews()"></div>
 </div>
+
+<div class="dots" id="dots"></div>
 
 <!-- ALL NEWS -->
 <h2 style="padding:0 40px;">All Island News</h2>
 
 <div class="news-grid">
-    <div class="card">
+
+    <div class="card" onclick="location.href='/jeous/news1.html'">
         <img src="images/image3.jpg">
         <p>News 1</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="location.href='/jeous/news2.html'">
         <img src="images/image4.jpg">
         <p>News 2</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="location.href='/jeous/news3.html'">
         <img src="images/image5.jpg">
         <p>News 3</p>
     </div>
+
 </div>
 
 <script>
 
-/* ===== IPコピー ===== */
+/* コピー */
 function copyIP(){
     navigator.clipboard.writeText("mc.jeous.net");
-    alert("IPコピーしたで！");
+    alert("コピーした！");
 }
 
-/* ===== POPUP ===== */
+/* ポップアップ */
 function openPopup(){
     document.getElementById("popup").style.display="flex";
 }
-
 function closePopup(){
     document.getElementById("popup").style.display="none";
 }
-
-/* ESCで閉じる */
 document.addEventListener("keydown",e=>{
     if(e.key==="Escape") closePopup();
 });
 
-/* ===== NEWS自動切替 ===== */
+/* NEWS */
 let news=[
-    {
-        title:"Battle Box Arena News!",
-        text:"新モード登場",
-        img:"images/image3.jpg"
-    },
-    {
-        title:"Spirit Blossom Event",
-        text:"イベント開催",
-        img:"images/image4.jpg"
-    },
-    {
-        title:"Ranked Begins",
-        text:"ランク開始",
-        img:"images/image5.jpg"
-    }
+{title:"Battle Box",text:"新モード",img:"images/image3.jpg",link:"/jeous/news1.html"},
+{title:"Event",text:"イベント",img:"images/image4.jpg",link:"/jeous/news2.html"},
+{title:"Ranked",text:"ランク",img:"images/image5.jpg",link:"/jeous/news3.html"},
+{title:"Update",text:"更新",img:"images/image6.jpg",link:"/jeous/news4.html"},
+{title:"New",text:"新規",img:"images/image7.jpg",link:"/jeous/news5.html"}
 ];
 
 let i=0;
 
-function updateNews(){
+/* ドット */
+let dots=document.getElementById("dots");
+news.forEach((_,index)=>{
+    let d=document.createElement("span");
+    d.className="dot";
+    d.onclick=()=>{i=index;update();}
+    dots.appendChild(d);
+});
+
+function update(){
     document.getElementById("newsTitle").innerText=news[i].title;
     document.getElementById("newsText").innerText=news[i].text;
     document.getElementById("newsImg").style.backgroundImage=`url(${news[i].img})`;
+    document.getElementById("readMore").href=news[i].link;
 
-    i=(i+1)%news.length;
+    document.querySelectorAll(".dot").forEach((d,idx)=>{
+        d.classList.toggle("active",idx===i);
+    });
 }
 
-updateNews();
-setInterval(updateNews,10000);
+function goNews(){
+    location.href=news[i].link;
+}
+
+update();
+setInterval(()=>{i=(i+1)%news.length;update();},10000);
 
 </script>
 
