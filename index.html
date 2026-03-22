@@ -2,201 +2,153 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>MCC風 完成版</title>
+<title>JEous Network</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f6fa;
+body{
+    margin:0;
+    font-family:'Montserrat',sans-serif;
+    background:#f5f6fa;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
+/* ===== HEADER ===== */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    z-index:999;
 }
 
-/* ===== ヘッダー ===== */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: white;
-    z-index: 999;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.header-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
 }
 
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
+.nav a{
+    margin:0 12px;
+    text-decoration:none;
+    color:#555;
+    font-weight:700;
 }
 
-.logo {
-    font-weight: bold;
-    font-size: 20px;
+.play-btn{
+    background:#a855f7;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-.nav {
-    display: flex;
-    gap: 18px;
+/* ===== HERO ===== */
+.hero{
+    margin-top:90px;
+    height:420px;
+    background:url("images/image1.jpg") center/cover;
+    position:relative;
+    border-radius:20px;
 }
 
-.nav a {
-    text-decoration: none;
-    color: #555;
-    font-weight: bold;
-    font-size: 14px;
+/* ===== SERVER ===== */
+.server-overlay{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    display:flex;
+    gap:15px;
+    background:rgba(0,0,0,0.6);
+    padding:15px;
+    border-radius:12px;
 }
 
-.nav a:hover {
-    color: #a855f7;
+.server-icon{
+    width:65px;
+    border-radius:12px;
 }
 
-/* ===== 右側ボタン ===== */
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.server-name{color:white;font-size:20px;font-weight:800;}
+.server-ip{color:#ccc;}
+
+.play-now{
+    background:#a855f7;
+    color:white;
+    padding:6px 12px;
+    border-radius:6px;
+    margin-top:5px;
+    cursor:pointer;
 }
 
-.play-btn {
-    background: #a855f7;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: bold;
+/* ===== POPUP ===== */
+.popup{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 
-/* ===== メイン ===== */
-main {
-    padding-top: 90px;
+.popup-content{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:400px;
+    text-align:center;
 }
 
-/* ===== ヒーロー ===== */
-.hero {
-    position: relative;
-    height: 420px;
-    border-radius: 20px;
-    overflow: hidden;
+.popup button{
+    background:#ffd54f;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
 }
 
-/* スライド */
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: opacity 1s;
+/* ===== NEWS TOP ===== */
+.news-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:40px;
 }
 
-.slide.hidden {
-    opacity: 0;
+.news-main{
+    display:flex;
+    gap:20px;
+    align-items:center;
 }
 
-/* ===== サーバー情報 ===== */
-.server-overlay {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    background: rgba(0,0,0,0.6);
-    padding: 18px 22px;
-    border-radius: 16px;
+.news-img{
+    width:400px;
+    height:220px;
+    border-radius:15px;
+    background-size:cover;
 }
 
-/* アイコン */
-.server-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 14px;
+/* ===== ALL NEWS ===== */
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:0 40px;
 }
 
-/* テキスト */
-.server-name {
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
 }
 
-.server-ip {
-    color: #ddd;
-    margin-bottom: 8px;
-}
-
-/* ★ PLAY NOW ボタン */
-.play-now {
-    display: inline-block;
-    background: #a855f7;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-/* ===== 下の情報 ===== */
-.info-row {
-    margin-top: 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.box {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.discord-box {
-    background: #5865F2;
-    color: white;
-}
-
-/* ===== SNS ===== */
-.social {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social a {
-    width: 45px;
-    height: 45px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* ===== NEWS ===== */
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
 }
 </style>
 </head>
@@ -205,74 +157,57 @@ main {
 
 <header>
     <div class="header-inner">
+        <div>MCC</div>
 
-        <div class="logo">MCC</div>
-
-        <!-- ★ メニュー増量 -->
         <div class="nav">
-            <a href="/jeous/event">EVENT</a>
-            <a href="/jeous/island">ISLAND</a>
-            <a href="/jeous/forums">FORUMS</a>
-            <a href="/jeous/rules">RULES</a>
-            <a href="/jeous/merch">MERCH</a>
-            <a href="/jeous/store">STORE</a>
+            <a>EVENT</a>
+            <a>ISLAND</a>
+            <a>FORUMS</a>
+            <a>RULES</a>
+            <a>STORE</a>
         </div>
 
-        <div class="header-right">
-            <div class="play-btn">mc.jeous.net</div>
-        </div>
-
+        <!-- コピー機能 -->
+        <div class="play-btn" onclick="copyIP()">mc.jeous.net</div>
     </div>
 </header>
 
-<main class="container">
-
-<!-- ===== スライド ===== -->
+<!-- HERO -->
 <div class="hero">
-
-    <div class="slide" style="background-image:url('images/image1.jpg')"></div>
-    <div class="slide hidden" style="background-image:url('images/image6.jpg')"></div>
-
-    <!-- サーバー情報 -->
     <div class="server-overlay">
-
-        <!-- ★ サーバーアイコン -->
         <img src="images/image2.png" class="server-icon">
 
         <div>
             <div class="server-name">JEous Network</div>
             <div class="server-ip">mc.jeous.net</div>
-
-            <!-- ★ PLAY NOW追加 -->
-            <div class="play-now">PLAY NOW</div>
+            <div class="play-now" onclick="openPopup()">PLAY NOW</div>
         </div>
-
-    </div>
-
-</div>
-
-<!-- ===== ステータス ===== -->
-<div class="info-row">
-    <div class="box">
-        <b>Server Status</b>
-        <p>ONLINE</p>
-    </div>
-
-    <div class="box discord-box">
-        <b>Discord</b>
-        <p>Join the community</p>
     </div>
 </div>
 
-<!-- ===== SNS ===== -->
-<div class="social">
-    <a href="#"><i class="fa-brands fa-discord"></i></a>
-    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>How to Connect</h2>
+        <p>1. Multiplayer → Add Server</p>
+        <p>2. mc.jeous.net を入力</p>
+        <p>3. Done</p>
+        <button onclick="closePopup()">GOT IT</button>
+    </div>
 </div>
 
-<!-- ===== NEWS ===== -->
-<h2>News</h2>
+<!-- NEWS TOP（切り替え） -->
+<div class="news-top">
+    <div>
+        <h1 id="newsTitle">Battle Box Arena News!</h1>
+        <p id="newsText">最新ニュース</p>
+    </div>
+
+    <div class="news-img" id="newsImg"></div>
+</div>
+
+<!-- ALL NEWS -->
+<h2 style="padding:0 40px;">All Island News</h2>
 
 <div class="news-grid">
     <div class="card">
@@ -291,17 +226,60 @@ main {
     </div>
 </div>
 
-</main>
-
 <script>
-let slides = document.querySelectorAll(".slide");
-let i = 0;
 
-setInterval(() => {
-    slides[i].classList.add("hidden");
-    i = (i + 1) % slides.length;
-    slides[i].classList.remove("hidden");
-}, 4000);
+/* ===== IPコピー ===== */
+function copyIP(){
+    navigator.clipboard.writeText("mc.jeous.net");
+    alert("IPコピーしたで！");
+}
+
+/* ===== POPUP ===== */
+function openPopup(){
+    document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+/* ESCで閉じる */
+document.addEventListener("keydown",e=>{
+    if(e.key==="Escape") closePopup();
+});
+
+/* ===== NEWS自動切替 ===== */
+let news=[
+    {
+        title:"Battle Box Arena News!",
+        text:"新モード登場",
+        img:"images/image3.jpg"
+    },
+    {
+        title:"Spirit Blossom Event",
+        text:"イベント開催",
+        img:"images/image4.jpg"
+    },
+    {
+        title:"Ranked Begins",
+        text:"ランク開始",
+        img:"images/image5.jpg"
+    }
+];
+
+let i=0;
+
+function updateNews(){
+    document.getElementById("newsTitle").innerText=news[i].title;
+    document.getElementById("newsText").innerText=news[i].text;
+    document.getElementById("newsImg").style.backgroundImage=`url(${news[i].img})`;
+
+    i=(i+1)%news.length;
+}
+
+updateNews();
+setInterval(updateNews,10000);
+
 </script>
 
 </body>
