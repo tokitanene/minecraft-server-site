@@ -224,6 +224,62 @@ footer{
     color:#333;
     font-weight:600;
 }
+
+/* 横並び */
+.info-row{
+    max-width:1200px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+/* 共通カード */
+.info-box{
+    background:white;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Server Status */
+#statusText{
+    font-weight:700;
+    font-size:18px;
+    margin-top:10px;
+}
+
+/* SNS */
+.social-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+}
+
+.social-box a{
+    width:50px;
+    height:50px;
+    background:#f5f6fa;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    color:#333;
+    transition:0.3s;
+}
+
+.social-box a:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* 色 */
+.social-box a:nth-child(1){color:#5865F2;}
+.social-box a:nth-child(2){color:red;}
+.social-box a:nth-child(3){color:black;}
 </style>
 </head>
 
@@ -366,6 +422,31 @@ news.forEach((_,idx)=>{
 });
 
 updateNews();
+
+<div class="info-row">
+
+    <!-- Server Status -->
+    <div class="info-box">
+        <h3>Server Status</h3>
+        <p id="statusText">Checking...</p>
+    </div>
+
+    <!-- SNS -->
+    <div class="info-box social-box">
+        <a href="https://discord.gg/yourlink" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+
+        <a href="https://youtube.com" target="_blank">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="https://x.com" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i>
+        </a>
+    </div>
+
+</div>
 
 setInterval(()=>{
     i=(i+1)%news.length;
