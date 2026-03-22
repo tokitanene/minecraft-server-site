@@ -62,14 +62,21 @@ header{
 
 .server-overlay{
     position:absolute;
-    bottom:20px;
-    left:20px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+
     display:flex;
-    gap:15px;
+    flex-direction:column; /* ← 縦並び */
+    align-items:center;   /* ← 真ん中揃え */
+
     background:rgba(0,0,0,0.6);
-    padding:15px;
-    border-radius:12px;
+    padding:25px 30px;
+    border-radius:16px;
+    text-align:center;
 }
+
+    
 
 .server-icon{width:65px;border-radius:12px;}
 .server-name{color:white;font-weight:800;font-size:20px;}
@@ -185,6 +192,34 @@ footer{
     gap:30px;
 }
 
+.server-icon{
+    width:90px;
+    height:90px;
+    border-radius:20px;
+    margin-bottom:10px;
+}
+
+.server-name{
+    color:white;
+    font-weight:800;
+    font-size:24px;
+    margin-bottom:5px;
+}
+
+.server-ip{
+    color:#ccc;
+    margin-bottom:10px;
+}
+
+.play-now{
+    background:#a855f7;
+    color:white;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+}
+    
 .footer-inner a{
     text-decoration:none;
     color:#333;
